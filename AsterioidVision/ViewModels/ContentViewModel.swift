@@ -6,3 +6,30 @@
 //
 
 import Foundation
+
+extension ContentView {
+    @Observable
+    class ViewModel {
+	
+	var networkService = NetworkService()
+	
+	var asteroids: [NearEarthObject] = []
+	
+	var response: Response?
+	
+	init() {
+	    loadAsteroids()
+	}
+	
+	func loadAsteroids() {
+	    
+	    Task {
+		response = try await networkService.fetchAsteroids()
+		
+		if let response {
+		    asteroids = response.nearEarthObjects.objects
+		}
+	    }
+	}
+    }
+}

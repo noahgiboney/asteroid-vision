@@ -6,3 +6,24 @@
 //
 
 import Foundation
+
+enum NasaError: Error {
+    
+    case server
+    case url
+    case data
+    case unkown(Error)
+    
+    var message: String? {
+	switch self {
+	case .server: "There was an error with the server. Please try again later."
+	case .url:
+	    ""
+	case .data:
+	    "The Asteroid data is invalid. Please try again later."
+	    
+	case .unkown(let error):
+	    "\(error.localizedDescription)"
+	}
+    }
+}
