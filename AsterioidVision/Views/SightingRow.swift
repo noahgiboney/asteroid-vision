@@ -9,17 +9,31 @@ import SwiftUI
 
 struct SightingRow: View {
     
-    var cad: NearEarthObject
+    var closeApproach: CloseApproachData
     
     var body: some View {
 	Group {
-	    HStack {
-		
-	    }
+	    HStack{
+		Spacer()
+		    VStack{
+			Text(closeApproach.date).bold()
+		    }
+		Spacer()
+		    VStack{
+			Text("Orbiting Body").font(.caption.bold())
+			Text(closeApproach.orbitingBody)
+		    }
+		Spacer()
+		    VStack{
+			Text("Relative Velocity").font(.caption.bold())
+			Text(closeApproach.relativeVelocity.kms)
+		    }
+		Spacer()
+		}
 	}
     }
 }
 
 #Preview {
-    SightingRow(cad: CloseApproachData.example)
+    SightingRow(closeApproach: CloseApproachData.example)
 }
