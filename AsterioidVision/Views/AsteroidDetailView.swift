@@ -11,7 +11,7 @@ struct AsteroidDetailView: View {
     
     var asteroid: NearEarthObject
     
-    @State private var viewModel: ViewModel
+    @State private var viewModel = ViewModel(id: "78978") 
     
     init(asteroid: NearEarthObject) {
 	self.asteroid = asteroid

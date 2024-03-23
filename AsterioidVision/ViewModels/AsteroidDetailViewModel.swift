@@ -12,8 +12,6 @@ extension AsteroidDetailView {
     @Observable
     class ViewModel {
 	
-	var networkManager = NetworkService()
-	
 	var allSightings: [CloseApproachData] = []
 	
 	var object: NearEarthObject?
@@ -29,7 +27,7 @@ extension AsteroidDetailView {
 	
 	func loadAsteroidSightings () {
 	    Task {
-		object = try await networkManager.fetchAsteroidSightings(for: id)
+		object = try await NetworkService.shared.fetchAsteroidSightings(for: id)
 	    }
 	    
 	    if let object {

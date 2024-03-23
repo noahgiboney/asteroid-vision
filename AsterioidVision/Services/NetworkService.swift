@@ -13,6 +13,10 @@ class NetworkService {
     
     private let key = "dHOF8WnJtWYZrknUvPJZRddyB7J7q537zUXdwodN"
         
+    private init() {}
+    
+    static let shared = NetworkService()
+    
     func fetchAsteroids() async throws -> Response?{
 	
 	let url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=\(Date().todayDate)&end_date=\(Date().todayDate)&api_key=\(key)"
