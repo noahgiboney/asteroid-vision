@@ -12,7 +12,7 @@ import Observation
 class NetworkService {
     
     private let key = "dHOF8WnJtWYZrknUvPJZRddyB7J7q537zUXdwodN"
-        
+    
     private init() {}
     
     static let shared = NetworkService()
@@ -22,24 +22,24 @@ class NetworkService {
 	let url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=\(Date().todayDate)&end_date=\(Date().todayDate)&api_key=\(key)"
 	
 	do {
-	    guard let endpoint = URL(string: url) else { throw NasaError.url }
+	    guard let endpoint = URL(string: url) else { throw APIError.url }
 	    
 	    let (data, serverResponse) = try await URLSession.shared.data(from: endpoint)
 	    
-	    guard (serverResponse as? HTTPURLResponse)?.statusCode == 200 else { throw NasaError.server }
+	    guard (serverResponse as? HTTPURLResponse)?.statusCode == 200 else { throw APIError.server }
 	    
 	    let decoder = JSONDecoder()
 	    decoder.keyDecodingStrategy = .convertFromSnakeCase
 	    
 	    guard let decodedData = try? decoder.decode(Response.self, from: data) else {
-		throw NasaError.data
+		throw APIError.data
 	    }
 	    return decodedData
-	} catch NasaError.url{
+	} catch APIError.url{
 	    print("daily approaches: invalid url")
-	} catch NasaError.server {
+	} catch APIError.server {
 	    print("daily approaches: server error")
-	} catch NasaError.data{
+	} catch APIError.data{
 	    print("daily approaches: invalid data")
 	}
 	return nil
@@ -49,26 +49,62 @@ class NetworkService {
 	let url = "https://api.nasa.gov/neo/rest/v1/neo/\(id)?api_key=\(key)"
 	
 	do {
-	    guard let endpoint = URL(string: url) else { throw NasaError.url }
+	    guard let endpoint = URL(string: url) else { throw APIError.url }
 	    
 	    let (data, response) = try await URLSession.shared.data(from: endpoint)
 	    
-	    guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw NasaError.server}
+	    guard (response as? HTTPURLResponse)?.statusCode == 200 else { throw APIError.server}
 	    
 	    let decoder = JSONDecoder()
 	    decoder.keyDecodingStrategy = .convertFromSnakeCase
 	    
-	    guard let decodedData = try? decoder.decode(NearEarthObject.self, from: data) else { throw NasaError.data}
+	    guard let decodedData = try? decoder.decode(NearEarthObject.self, from: data) else { throw APIError.data}
 	    
 	    return decodedData
 	    
-	} catch NasaError.url{
+	} catch APIError.url{
 	    print("all approaches: invalid url")
-	} catch NasaError.server {
+	} catch APIError.server {
 	    print("all approaches: server error")
-	} catch NasaError.data{
+	} catch APIError.data{
 	    print("all approaches: invalid data")
 	}
 	return nil
     }
+    
+    func fetchAsteroidCollection() async throws {
+	
+	let url = "https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=\(key)"
+	
+	do {
+	    
+	    guard let endpoint = URL(string: url) else {
+		throw APIError.url
+	    }
+	    
+	    let (data, response) = try await URLSession.shared.data(from: endpoint)
+	    
+	    guard (response as? HTTPURLResponse)?.statusCode == 200 else {
+		throw APIError.server
+	    }
+	    
+	    let decoder = JSONDecoder()
+	    decoder.keyDecodingStrategy = .convertFromSnakeCase
+	    
+	    guard let decodedData = try? decoder.decode([Int].self, from: data) else {
+		throw APIError.data
+	    }
+	    
+	} catch APIError.url{
+	    print("collection: invalid url")
+	} catch APIError.server {
+	    print("collection: server error")
+	} catch APIError.data{
+	    print("collection: invalid data")
+	}
+	
+    }
+    
+    
+    
 }

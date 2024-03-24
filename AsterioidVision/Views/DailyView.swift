@@ -17,31 +17,24 @@ struct DailyView: View {
 	    List {
 		DatePicker("Near earth objects for:", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
 		VStack{
-		
-		    
 		    MySceneView(model: "earth.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
-			.frame(height: 200)
-			.padding()
-			
+			.frame(height: 150)
 			.scaleEffect(1.5)
-		    
+			.padding()
 		}
-
 		.listRowSeparator(.hidden)
 		
-		
-		
 		Section("Near Earth Objects"){
-		    ForEach(viewModel.asteroids) { example in
+		    ForEach(viewModel.asteroids) { asteroid in
 			VStack {
 			    NavigationLink {
-				
+				DetailView(asteroid: asteroid)
 			    } label :{
 				VStack(alignment: .leading){
-				    Text(example.name)
+				    Text(asteroid.name)
 					.font(.headline)
-				    Text(example.isPotentiallyHazardousAsteroid ? "Hazard": "Non-Hazard")
-					.foregroundStyle(example.isPotentiallyHazardousAsteroid ? .red : .black)
+				    Text(asteroid.isPotentiallyHazardousAsteroid ? "Hazard": "Non-Hazard")
+					.foregroundStyle(asteroid.isPotentiallyHazardousAsteroid ? .red : .black)
 					.font(.caption)
 				}
 			    }
