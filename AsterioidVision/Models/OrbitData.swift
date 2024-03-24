@@ -6,3 +6,10 @@
 //
 
 import Foundation
+
+struct OrbitData: Codable {
+    var orbitId: String
+    var orbitDeterminationDate: String
+    var firstObservationDate: String
+    var lastObservationDate: String
+}

@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct CollectionResponse: Codable {
+    var nearEarthObjects: [CollectionNearEarthObject]
+}

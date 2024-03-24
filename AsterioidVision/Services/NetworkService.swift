@@ -22,6 +22,7 @@ class NetworkService {
 	let url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=\(Date().todayDate)&end_date=\(Date().todayDate)&api_key=\(key)"
 	
 	do {
+	    
 	    guard let endpoint = URL(string: url) else { throw APIError.url }
 	    
 	    let (data, serverResponse) = try await URLSession.shared.data(from: endpoint)
@@ -34,7 +35,9 @@ class NetworkService {
 	    guard let decodedData = try? decoder.decode(Response.self, from: data) else {
 		throw APIError.data
 	    }
+	    
 	    return decodedData
+	    
 	} catch APIError.url{
 	    print("daily approaches: invalid url")
 	} catch APIError.server {
@@ -49,6 +52,7 @@ class NetworkService {
 	let url = "https://api.nasa.gov/neo/rest/v1/neo/\(id)?api_key=\(key)"
 	
 	do {
+	    
 	    guard let endpoint = URL(string: url) else { throw APIError.url }
 	    
 	    let (data, response) = try await URLSession.shared.data(from: endpoint)
@@ -72,9 +76,9 @@ class NetworkService {
 	return nil
     }
     
-    func fetchAsteroidCollection() async throws {
+    func fetchAsteroidCollection(page: Int, size: Int) async throws -> CollectionResponse? {
 	
-	let url = "https://api.nasa.gov/neo/rest/v1/neo/browse?api_key=\(key)"
+	let url = "https://api.nasa.gov/neo/rest/v1/neo/browse?page=\(page)&\(size)=20&api_key=\(key)"
 	
 	do {
 	    
@@ -91,9 +95,10 @@ class NetworkService {
 	    let decoder = JSONDecoder()
 	    decoder.keyDecodingStrategy = .convertFromSnakeCase
 	    
-	    guard let decodedData = try? decoder.decode([Int].self, from: data) else {
+	    guard let decodedData = try? decoder.decode(CollectionResponse.self, from: data) else {
 		throw APIError.data
 	    }
+	    return decodedData
 	    
 	} catch APIError.url{
 	    print("collection: invalid url")
@@ -102,6 +107,7 @@ class NetworkService {
 	} catch APIError.data{
 	    print("collection: invalid data")
 	}
+	return nil
 	
     }
     

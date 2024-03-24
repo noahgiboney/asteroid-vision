@@ -8,8 +8,36 @@
 import SwiftUI
 
 struct CollectionView: View {
+    
+    @State private var viewModel = ViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+	
+	NavigationStack {
+	    
+	    List {
+		
+		VStack{
+		    MySceneView(model: "earth.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
+			.frame(height: 150)
+			.scaleEffect(1.5)
+			.padding()
+		}
+		.listRowSeparator(.hidden)
+		
+		Section("Asteroid Collection"){
+		    ForEach(viewModel.collection) { asteroid in
+			NavigationLink{
+			    
+			} label: {
+			    Text(asteroid.nameLimited)
+			}
+		    }
+		}
+	    }
+	    .navigationTitle("Collection")
+	    .listStyle(.plain)
+	}
     }
 }
 

@@ -8,8 +8,23 @@
 import SwiftUI
 
 struct HazerdousView: View {
+    
+    @State private var viewModel = ViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+	
+	NavigationStack {
+	    
+	    List {
+		
+		ForEach(viewModel.hazards) { asteroid in
+		    Text(asteroid.nameLimited)
+		}
+		
+	    }
+	    .navigationTitle("Hazerdous")
+	    .listStyle(.plain)
+	}
     }
 }
 

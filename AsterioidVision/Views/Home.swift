@@ -16,7 +16,7 @@ struct Home: View {
 	    Text("g")
 		.tabItem { Label("Hazerdous", systemImage: "hazardsign") }
 	    
-	    Text("g")
+	    CollectionView()
 		.tabItem { Label("All Asteroids", systemImage: "plus") }
 	}
     }

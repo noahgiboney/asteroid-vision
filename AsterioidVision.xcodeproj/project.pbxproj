@@ -7,8 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		E22700402BAFB42A00844860 /* Hazerdous.swift in Sources */ = {isa = PBXBuildFile; fileRef = E227003F2BAFB42A00844860 /* Hazerdous.swift */; };
 		E22700422BAFB46800844860 /* HazerdousViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22700412BAFB46800844860 /* HazerdousViewModel.swift */; };
+		E22700442BAFE17200844860 /* CloseApproachData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22700432BAFE17200844860 /* CloseApproachData.swift */; };
+		E22700462BAFE1CC00844860 /* EstimatedDiameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22700452BAFE1CC00844860 /* EstimatedDiameter.swift */; };
+		E22700482BAFE45F00844860 /* OrbitData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22700472BAFE45F00844860 /* OrbitData.swift */; };
+		E227004A2BAFE5FF00844860 /* CollectionResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22700492BAFE5FF00844860 /* CollectionResponse.swift */; };
+		E227004C2BAFE66A00844860 /* CollectionNearEarthObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E227004B2BAFE66A00844860 /* CollectionNearEarthObject.swift */; };
 		E232048E2BAE7583003D9322 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = E232048D2BAE7583003D9322 /* Home.swift */; };
 		E23204902BAE772C003D9322 /* DailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E232048F2BAE772C003D9322 /* DailyView.swift */; };
 		E23204922BAE77A1003D9322 /* DailyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23204912BAE77A1003D9322 /* DailyViewModel.swift */; };
@@ -24,6 +28,9 @@
 		E243AA382BABFAD100B87D13 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E243AA372BABFAD100B87D13 /* Helpers.swift */; };
 		E28C3EE42BAD0C2900BADDA6 /* SightingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28C3EE32BAD0C2900BADDA6 /* SightingRow.swift */; };
 		E28C3EE62BAD24C400BADDA6 /* AsteroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28C3EE52BAD24C400BADDA6 /* AsteroidCard.swift */; };
+		E293805E2BB0914A002F596B /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293805D2BB0914A002F596B /* CollectionView.swift */; };
+		E29380602BB0919E002F596B /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293805F2BB0919E002F596B /* CollectionViewModel.swift */; };
+		E29380622BB09891002F596B /* HazerdousView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380612BB09891002F596B /* HazerdousView.swift */; };
 		E2D863C22BAE01D000A4260D /* asteroid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E2D863C12BAE01D000A4260D /* asteroid.usdz */; };
 		E2DE1D242BA68250009E5B85 /* AsterioidVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE1D232BA68250009E5B85 /* AsterioidVisionApp.swift */; };
 		E2DE1D282BA68251009E5B85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DE1D272BA68251009E5B85 /* Assets.xcassets */; };
@@ -33,8 +40,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E227003F2BAFB42A00844860 /* Hazerdous.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hazerdous.swift; sourceTree = "<group>"; };
 		E22700412BAFB46800844860 /* HazerdousViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HazerdousViewModel.swift; sourceTree = "<group>"; };
+		E22700432BAFE17200844860 /* CloseApproachData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseApproachData.swift; sourceTree = "<group>"; };
+		E22700452BAFE1CC00844860 /* EstimatedDiameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstimatedDiameter.swift; sourceTree = "<group>"; };
+		E22700472BAFE45F00844860 /* OrbitData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitData.swift; sourceTree = "<group>"; };
+		E22700492BAFE5FF00844860 /* CollectionResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionResponse.swift; sourceTree = "<group>"; };
+		E227004B2BAFE66A00844860 /* CollectionNearEarthObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionNearEarthObject.swift; sourceTree = "<group>"; };
 		E232048D2BAE7583003D9322 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		E232048F2BAE772C003D9322 /* DailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyView.swift; sourceTree = "<group>"; };
 		E23204912BAE77A1003D9322 /* DailyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyViewModel.swift; sourceTree = "<group>"; };
@@ -50,6 +61,9 @@
 		E243AA372BABFAD100B87D13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		E28C3EE32BAD0C2900BADDA6 /* SightingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SightingRow.swift; sourceTree = "<group>"; };
 		E28C3EE52BAD24C400BADDA6 /* AsteroidCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidCard.swift; sourceTree = "<group>"; };
+		E293805D2BB0914A002F596B /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
+		E293805F2BB0919E002F596B /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
+		E29380612BB09891002F596B /* HazerdousView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HazerdousView.swift; sourceTree = "<group>"; };
 		E2D863C12BAE01D000A4260D /* asteroid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = asteroid.usdz; sourceTree = "<group>"; };
 		E2DE1D202BA68250009E5B85 /* AsterioidVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsterioidVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DE1D232BA68250009E5B85 /* AsterioidVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsterioidVisionApp.swift; sourceTree = "<group>"; };
@@ -82,20 +96,21 @@
 			isa = PBXGroup;
 			children = (
 				E23204912BAE77A1003D9322 /* DailyViewModel.swift */,
-				E23661FD2BAF675C00AADA8F /* DetailViewModel.swift */,
+				E293805F2BB0919E002F596B /* CollectionViewModel.swift */,
 				E22700412BAFB46800844860 /* HazerdousViewModel.swift */,
+				E23661FD2BAF675C00AADA8F /* DetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		E2D863C32BAE01E500A4260D /* Objects */ = {
+		E2D863C32BAE01E500A4260D /* 3D-Objects */ = {
 			isa = PBXGroup;
 			children = (
 				E2D863C12BAE01D000A4260D /* asteroid.usdz */,
 				E23204972BAE8B02003D9322 /* asteroidgroup.usdz */,
 				E23204992BAE905C003D9322 /* earth.usdz */,
 			);
-			path = Objects;
+			path = "3D-Objects";
 			sourceTree = "<group>";
 		};
 		E2DE1D172BA68250009E5B85 = {
@@ -119,7 +134,7 @@
 			children = (
 				E2DE1D232BA68250009E5B85 /* AsterioidVisionApp.swift */,
 				E243AA372BABFAD100B87D13 /* Helpers.swift */,
-				E2D863C32BAE01E500A4260D /* Objects */,
+				E2D863C32BAE01E500A4260D /* 3D-Objects */,
 				E2DE1D322BA68273009E5B85 /* Views */,
 				E238207A2BAB7B970095D4FC /* ViewModels */,
 				E23820752BAB77100095D4FC /* Services */,
@@ -144,6 +159,11 @@
 				E2DE1D332BA68296009E5B85 /* Response.swift */,
 				E23820712BAB55B00095D4FC /* NearEarthObjectsByData.swift */,
 				E23820732BAB55C50095D4FC /* NearEarthObject.swift */,
+				E22700432BAFE17200844860 /* CloseApproachData.swift */,
+				E22700452BAFE1CC00844860 /* EstimatedDiameter.swift */,
+				E22700492BAFE5FF00844860 /* CollectionResponse.swift */,
+				E227004B2BAFE66A00844860 /* CollectionNearEarthObject.swift */,
+				E22700472BAFE45F00844860 /* OrbitData.swift */,
 				E23820782BAB77580095D4FC /* APIError.swift */,
 				E23661FB2BAF66FB00AADA8F /* Unit.swift */,
 			);
@@ -155,11 +175,12 @@
 			children = (
 				E232048D2BAE7583003D9322 /* Home.swift */,
 				E232048F2BAE772C003D9322 /* DailyView.swift */,
+				E293805D2BB0914A002F596B /* CollectionView.swift */,
+				E29380612BB09891002F596B /* HazerdousView.swift */,
 				E23661F92BAF629200AADA8F /* DetailView.swift */,
 				E28C3EE52BAD24C400BADDA6 /* AsteroidCard.swift */,
 				E28C3EE32BAD0C2900BADDA6 /* SightingRow.swift */,
 				E2E78D452BAE051500158AB0 /* MySceneView.swift */,
-				E227003F2BAFB42A00844860 /* Hazerdous.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -237,22 +258,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E227004A2BAFE5FF00844860 /* CollectionResponse.swift in Sources */,
 				E28C3EE42BAD0C2900BADDA6 /* SightingRow.swift in Sources */,
 				E23204902BAE772C003D9322 /* DailyView.swift in Sources */,
 				E23661FA2BAF629200AADA8F /* DetailView.swift in Sources */,
 				E23661FC2BAF66FB00AADA8F /* Unit.swift in Sources */,
 				E23820792BAB77580095D4FC /* APIError.swift in Sources */,
+				E293805E2BB0914A002F596B /* CollectionView.swift in Sources */,
 				E23820772BAB77230095D4FC /* NetworkService.swift in Sources */,
 				E28C3EE62BAD24C400BADDA6 /* AsteroidCard.swift in Sources */,
+				E29380602BB0919E002F596B /* CollectionViewModel.swift in Sources */,
+				E22700442BAFE17200844860 /* CloseApproachData.swift in Sources */,
 				E23661FE2BAF675C00AADA8F /* DetailViewModel.swift in Sources */,
+				E29380622BB09891002F596B /* HazerdousView.swift in Sources */,
 				E23820722BAB55B00095D4FC /* NearEarthObjectsByData.swift in Sources */,
 				E232048E2BAE7583003D9322 /* Home.swift in Sources */,
 				E22700422BAFB46800844860 /* HazerdousViewModel.swift in Sources */,
 				E23204922BAE77A1003D9322 /* DailyViewModel.swift in Sources */,
+				E227004C2BAFE66A00844860 /* CollectionNearEarthObject.swift in Sources */,
+				E22700482BAFE45F00844860 /* OrbitData.swift in Sources */,
 				E23820742BAB55C50095D4FC /* NearEarthObject.swift in Sources */,
 				E2E78D462BAE051500158AB0 /* MySceneView.swift in Sources */,
 				E243AA382BABFAD100B87D13 /* Helpers.swift in Sources */,
-				E22700402BAFB42A00844860 /* Hazerdous.swift in Sources */,
+				E22700462BAFE1CC00844860 /* EstimatedDiameter.swift in Sources */,
 				E2DE1D342BA68296009E5B85 /* Response.swift in Sources */,
 				E2DE1D242BA68250009E5B85 /* AsterioidVisionApp.swift in Sources */,
 			);
