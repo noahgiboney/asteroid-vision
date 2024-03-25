@@ -8,16 +8,23 @@
 import SwiftUI
 
 struct Home: View {
+    
     var body: some View {
+	
 	TabView {
-	    DailyView()
-		.tabItem { Label("Daily", systemImage: "calendar") }
 	    
-	    Text("g")
+	    HazerdousView()
 		.tabItem { Label("Hazerdous", systemImage: "hazardsign") }
 	    
 	    CollectionView()
-		.tabItem { Label("All Asteroids", systemImage: "plus") }
+		.tabItem { Label("Collection", systemImage: "globe.central.south.asia.fill") }
+	    
+	    DailyView()
+		.tabItem { Label("Daily", systemImage: "calendar") }
+	    
+	    FavoritesView()
+		.tabItem { Label("Favorites", systemImage: "star") }
+	    
 	}
     }
 }

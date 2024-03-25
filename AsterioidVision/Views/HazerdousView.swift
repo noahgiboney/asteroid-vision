@@ -17,8 +17,22 @@ struct HazerdousView: View {
 	    
 	    List {
 		
-		ForEach(viewModel.hazards) { asteroid in
-		    Text(asteroid.nameLimited)
+		VStack{
+		    MySceneView(model: "pluto.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
+			.frame(height: 150)
+			.scaleEffect(1.5)
+			.padding()
+		}
+		.listRowSeparator(.hidden)
+		
+		Section("Hazerdous Asteroids"){
+		    ForEach(viewModel.hazards) { asteroid in
+			NavigationLink{
+			    CollectionDetailView(asteroid: asteroid)
+			} label: {
+			    Text(asteroid.nameLimited)
+			}
+		    }
 		}
 		
 	    }

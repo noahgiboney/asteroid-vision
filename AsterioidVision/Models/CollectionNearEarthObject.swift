@@ -16,5 +16,7 @@ struct CollectionNearEarthObject: Codable, Identifiable {
     var estimatedDiameter: EstimatedDiameter
     var isPotentiallyHazardousAsteroid: Bool
     var closeApproachData: [CloseApproachData]
-    var orbitalData: OrbitData
+//    var orbitalData: OrbitData
+    
+    static let example = CollectionNearEarthObject(id: "666", neoReferenceId: "84434", name: "234234 (2019 Junipt)", nameLimited: "Junipt", absoluteMagnitudeH: 44.1, estimatedDiameter: EstimatedDiameter.example, isPotentiallyHazardousAsteroid: false, closeApproachData: Array<CloseApproachData>.init(repeating: CloseApproachData.example, count: 10))
 }
