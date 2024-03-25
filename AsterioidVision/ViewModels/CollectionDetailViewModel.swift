@@ -11,6 +11,9 @@ extension CollectionDetailView {
     
     @Observable
     class ViewModel {
-	var unit: Unit = .kilometers
+	
+	var distance: Distance = .kilometers
+	
+	var speed: Speed = .kmPerS
     }
 }

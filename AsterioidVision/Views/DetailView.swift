@@ -9,7 +9,7 @@ import SwiftUI
 
 struct DetailView: View {
     
-    @AppStorage("Unit") var unitSelection: Unit = .miles
+    @AppStorage("Unit") var unitSelection: Distance = .miles
     
     @State private var viewModel = ViewModel()
     
@@ -62,7 +62,7 @@ struct DetailView: View {
 	    .toolbar {
 		Menu("Unit", systemImage: "ruler") {
 		    Picker("Unit", selection: $viewModel.unit) {
-			ForEach(Unit.allCases, id: \.self) { unitCase in
+			ForEach(Distance.allCases, id: \.self) { unitCase in
 			    Text(unitCase.rawValue.capitalized).tag(unitCase)
 			}
 		    }

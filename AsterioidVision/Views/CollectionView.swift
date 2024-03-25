@@ -18,7 +18,7 @@ struct CollectionView: View {
 	    List {
 		
 		VStack{
-		    MySceneView(model: "earth.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
+		    MySceneView(model: "venus.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
 			.frame(height: 150)
 			.scaleEffect(1.5)
 			.padding()
@@ -26,14 +26,18 @@ struct CollectionView: View {
 		.listRowSeparator(.hidden)
 		
 		Section("Asteroid Collection"){
+		    
 		    ForEach(viewModel.collection) { asteroid in
 			NavigationLink{
-			    
+			    CollectionDetailView(asteroid: asteroid)
 			} label: {
 			    Text(asteroid.nameLimited)
 			}
 		    }
 		}
+	    }
+	    .refreshable {
+		viewModel.loadCollection()
 	    }
 	    .navigationTitle("Collection")
 	    .listStyle(.plain)

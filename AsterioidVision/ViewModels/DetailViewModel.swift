@@ -12,6 +12,8 @@ extension DetailView {
     @Observable
     class ViewModel {
 	
-	var unit: Unit = .kilometers
+	var unit: Distance = .kilometers
+	
+	
     }
 }

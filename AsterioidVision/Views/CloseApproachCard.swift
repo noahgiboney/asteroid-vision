@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CloseApproachCard: View {
+struct CloseApproachCard: View { 
     
     var entry: CloseApproachData
     
@@ -19,6 +19,9 @@ struct CloseApproachCard: View {
 		    .font(.headline)
 		
 		Text(entry.date)
+		    .font(.caption)
+		
+		Text("Epoch \(entry.epochDateCloseApproach)")
 		    .font(.caption)
 	    }
 	    
@@ -34,4 +37,8 @@ struct CloseApproachCard: View {
 
 #Preview {
     CloseApproachCard(entry: CloseApproachData.example)
+}
+
+extension CloseApproachData {
+    
 }

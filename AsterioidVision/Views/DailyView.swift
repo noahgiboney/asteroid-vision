@@ -25,8 +25,9 @@ struct DailyView: View {
 		}
 		.listRowSeparator(.hidden)
 		
-		DatePicker("Near earth objects for:", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
+		DatePicker("Near earth objects on:", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
 		    .listRowSeparator(.hidden)
+		    .font(.headline)
 		
 		Section("Near Earth Objects"){
 		    
@@ -38,7 +39,6 @@ struct DailyView: View {
 			    } label :{
 				VStack(alignment: .leading){
 				    Text(asteroid.name)
-					.font(.headline)
 				    
 				    Text(asteroid.isPotentiallyHazardousAsteroid ? "Hazard": "Non-Hazard")
 					.foregroundStyle(asteroid.isPotentiallyHazardousAsteroid ? .red : .black)

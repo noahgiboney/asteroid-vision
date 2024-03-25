@@ -10,13 +10,13 @@ import Foundation
 struct CollectionNearEarthObject: Codable, Identifiable {
     let id: String
     var neoReferenceId: String
-    var name: String
-    var nameLimited: String
-    var absoluteMagnitudeH: Double
-    var estimatedDiameter: EstimatedDiameter
-    var isPotentiallyHazardousAsteroid: Bool
-    var closeApproachData: [CloseApproachData]
-//    var orbitalData: OrbitData
+    let name: String
+    let nameLimited: String
+    let absoluteMagnitudeH: Double
+    let estimatedDiameter: EstimatedDiameter
+    let isPotentiallyHazardousAsteroid: Bool
+    let closeApproachData: [CloseApproachData]
+    let orbitalData: OrbitalData
     
-    static let example = CollectionNearEarthObject(id: "666", neoReferenceId: "84434", name: "234234 (2019 Junipt)", nameLimited: "Junipt", absoluteMagnitudeH: 44.1, estimatedDiameter: EstimatedDiameter.example, isPotentiallyHazardousAsteroid: false, closeApproachData: Array<CloseApproachData>.init(repeating: CloseApproachData.example, count: 10))
+    static let example = CollectionNearEarthObject(id: "666", neoReferenceId: "84434", name: "234234 (2019 Junipt)", nameLimited: "Junipt", absoluteMagnitudeH: 44.1, estimatedDiameter: EstimatedDiameter.example, isPotentiallyHazardousAsteroid: false, closeApproachData: Array<CloseApproachData>.init(repeating: CloseApproachData.example, count: 10), orbitalData: OrbitalData.example)
 }

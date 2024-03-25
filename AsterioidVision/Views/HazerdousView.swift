@@ -9,6 +9,7 @@ import SwiftUI
 
 struct HazerdousView: View {
     
+    @Environment(Favorites.self) var favorites
     @State private var viewModel = ViewModel()
     
     var body: some View {
@@ -32,6 +33,16 @@ struct HazerdousView: View {
 			} label: {
 			    Text(asteroid.nameLimited)
 			}
+			.swipeActions {
+			    if favorites.contains(asteroid.id) == false{
+			        Button{
+				    favorites.add(asteroid.id)
+				} label: {
+				    Image(systemName: "star")
+				}
+				.tint(.blue)
+			    }
+			}
 		    }
 		}
 		
@@ -44,4 +55,5 @@ struct HazerdousView: View {
 
 #Preview {
     HazerdousView()
+	.environment(Favorites())
 }

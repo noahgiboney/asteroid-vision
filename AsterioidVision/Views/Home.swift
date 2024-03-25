@@ -9,6 +9,8 @@ import SwiftUI
 
 struct Home: View {
     
+    @State private var favorites = Favorites()
+    
     var body: some View {
 	
 	TabView {
@@ -26,6 +28,7 @@ struct Home: View {
 		.tabItem { Label("Favorites", systemImage: "star") }
 	    
 	}
+	.environment(favorites)
     }
 }
 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CollectionDetailView: View {
     
-    @AppStorage("Unit") var unitSelection: Unit = .miles
+    @AppStorage("Unit") var unitSelection: Distance = .miles
     @State private var viewModel = ViewModel()
     
     var asteroid: CollectionNearEarthObject
@@ -38,9 +38,7 @@ struct CollectionDetailView: View {
 		
 		Section(asteroid.name){
 		    
-		    Text("Miss Distance: ")
-		    +
-		    Text("\(asteroid.closeApproachData[0].missDistance.kilometers.beforeDecimal) km")
+		    Text(missDistance)
 		    
 		    Text("Relative Velocity: ")
 		    +
@@ -66,10 +64,14 @@ struct CollectionDetailView: View {
 			.scrollTargetLayout()
 		    }
 		    .scrollTargetBehavior(.viewAligned)
+		    .contentMargins(20, for: .scrollContent)
 		}
 		
-		Section("Orbit Data") {
+		Section("Orbital Data") {
+	    
+		    Text("First Observation: \(asteroid.orbitalData.firstObservationDate.formattedDate)")
 		    
+		    Text("Last OBservation: \(asteroid.orbitalData.lastObservationDate.formattedDate)")
 		    
 		}
 		
@@ -79,18 +81,26 @@ struct CollectionDetailView: View {
 	    .listStyle(.plain)
 	    .toolbar {
 		Menu("Unit", systemImage: "ruler") {
-		    Picker("Unit", selection: $viewModel.unit) {
-			ForEach(Unit.allCases, id: \.self) { unitCase in
+		    Picker("Unit", selection: $viewModel.distance) {
+			ForEach(Distance.allCases, id: \.self) { unitCase in
 			    Text(unitCase.rawValue.capitalized).tag(unitCase)
 			}
 		    }
 		}
+		
+		Menu("Unit", systemImage: "waveform") {
+		    Picker("Unit", selection: $viewModel.speed) {
+			    Text("km/s")
+			    Text("km/hour")
+			    Text("mph")
+		    }
+		}
 	    }
 	    .onAppear {
-		viewModel.unit = unitSelection
+		viewModel.distance = unitSelection
 	    }
-	    .onChange(of: viewModel.unit) {
-		unitSelection = viewModel.unit
+	    .onChange(of: viewModel.distance) {
+		unitSelection = viewModel.distance
 	    }
 	}
     }
@@ -98,4 +108,21 @@ struct CollectionDetailView: View {
 
 #Preview {
     CollectionDetailView(asteroid: CollectionNearEarthObject.example )
+}
+
+extension CollectionDetailView {
+    
+    var missDistance: String {
+	switch viewModel.distance {
+	case .kilometers:
+	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.kilometers.beforeDecimal + " km"
+	case .miles:
+	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.miles.beforeDecimal + " miles"
+	case .lunar:
+	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.lunar.beforeDecimal + " lunar distances"
+	case .astronomical:
+	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.astronomical + " au"
+	}
+    }
+    
 }
