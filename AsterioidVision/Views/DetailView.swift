@@ -49,7 +49,7 @@ struct DetailView: View {
 		    
 		    Text("Estimated Diameter: ")
 			+
-		    Text("\(asteroid.estimatedDiameter.diamter)")
+		    Text("\(asteroid.estimatedDiameter.kilometers.estimatedDiameterMax)")
 		    
 		    Text("Absolute Magnitude: \(asteroid.absoluteMagnitudeH.removeZerosFromEnd()) M")
 		    

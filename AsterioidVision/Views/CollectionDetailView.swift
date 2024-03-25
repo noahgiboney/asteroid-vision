@@ -9,8 +9,13 @@ import SwiftUI
 
 struct CollectionDetailView: View {
     
-    @AppStorage("Unit") var unitSelection: Distance = .miles
+    @AppStorage("distance") var distanceSelection: Distance = .miles
+    @AppStorage("speed") var speedSelection: Speed = .kmPerS
+    @AppStorage("diameter") var diameterSelection: Diameter = .kilometers
+    @Environment(Favorites.self) private var favorites
+    
     @State private var viewModel = ViewModel()
+    @State private var showingAlert = false
     
     var asteroid: CollectionNearEarthObject
     
@@ -38,15 +43,41 @@ struct CollectionDetailView: View {
 		
 		Section(asteroid.name){
 		    
-		    Text(missDistance)
+		    HStack{
+		        Text(missDistance)
+			Spacer()
+			Menu("", systemImage: "list.bullet") {
+			    Picker("", selection: $viewModel.distance) {
+				ForEach(Distance.allCases, id: \.self) { unitCase in
+				    Text(unitCase.rawValue.capitalized).tag(unitCase)
+				}
+			    }
+			}
+		    }
 		    
-		    Text("Relative Velocity: ")
-		    +
-		    Text(" \(asteroid.closeApproachData[0].relativeVelocity.kms)")
+		    HStack{
+		        Text(velocity)
+			Spacer()
+			Menu("", systemImage: "list.bullet") {
+			    Picker("", selection: $viewModel.speed) {
+				Text("km/s").tag(Speed.kmPerS)
+				Text("km/hour").tag(Speed.kmPerH)
+				Text("mph").tag(Speed.mph)
+			    }
+			}
+		    }
 		    
-		    Text("Estimated Diameter: ")
-		    +
-		    Text("\(asteroid.estimatedDiameter.diamter)")
+		    HStack{
+			Text(diameter)
+			Spacer()
+			Menu("", systemImage: "list.bullet") {
+			    Picker("", selection: $viewModel.diameter) {
+				ForEach(Diameter.allCases, id: \.self) { unitCase in
+				    Text(unitCase.rawValue.capitalized).tag(unitCase)
+				}
+			    }
+			}
+		    }
 		    
 		    Text("Absolute Magnitude: \(asteroid.absoluteMagnitudeH.removeZerosFromEnd()) M")
 		    
@@ -66,6 +97,7 @@ struct CollectionDetailView: View {
 		    .scrollTargetBehavior(.viewAligned)
 		    .contentMargins(20, for: .scrollContent)
 		}
+		.listRowSeparator(.hidden)
 		
 		Section("Orbital Data") {
 	    
@@ -79,35 +111,54 @@ struct CollectionDetailView: View {
 	    .navigationTitle(asteroid.nameLimited)
 	    .navigationBarTitleDisplayMode(.inline)
 	    .listStyle(.plain)
-	    .toolbar {
-		Menu("Unit", systemImage: "ruler") {
-		    Picker("Unit", selection: $viewModel.distance) {
-			ForEach(Distance.allCases, id: \.self) { unitCase in
-			    Text(unitCase.rawValue.capitalized).tag(unitCase)
-			}
-		    }
-		}
-		
-		Menu("Unit", systemImage: "waveform") {
-		    Picker("Unit", selection: $viewModel.speed) {
-			    Text("km/s")
-			    Text("km/hour")
-			    Text("mph")
-		    }
-		}
-	    }
 	    .onAppear {
-		viewModel.distance = unitSelection
+		viewModel.distance = distanceSelection
+		viewModel.speed = speedSelection
+		viewModel.diameter = diameterSelection
 	    }
 	    .onChange(of: viewModel.distance) {
-		unitSelection = viewModel.distance
+		distanceSelection = viewModel.distance
+	    }
+	    .onChange(of: viewModel.speed) {
+		speedSelection = viewModel.speed
+	    }
+	    .onChange(of: viewModel.diameter) {
+		diameterSelection = viewModel.diameter
+	    }
+	    .alert("Remove \(asteroid.nameLimited)", isPresented: $showingAlert) {
+		Button("Remove", role: .destructive) {
+		    favorites.delete(asteroid.id)
+		}
+	    } message: {
+		Text("Are you sure you want to remove \(asteroid.nameLimited) from your favorites?")
+	    }
+	    .toolbar {
+		Button{
+		    handleButtonPress()
+		} label: {
+		    Image(systemName: favorites.contains(asteroid.id) ? "star.fill" : "star")
+		}
+	    }
+	}
+    }
+    
+    func handleButtonPress() {
+	if favorites.contains(asteroid.id) == false{
+	    withAnimation{
+		favorites.add(asteroid.id)
+	    }
+	}
+	else {
+	    withAnimation{
+		showingAlert.toggle()
 	    }
 	}
     }
 }
 
 #Preview {
-    CollectionDetailView(asteroid: CollectionNearEarthObject.example )
+    CollectionDetailView(asteroid: CollectionNearEarthObject.example)
+	.environment(Favorites())
 }
 
 extension CollectionDetailView {
@@ -125,4 +176,34 @@ extension CollectionDetailView {
 	}
     }
     
+    var velocity: String {
+	switch viewModel.speed {
+	case .kmPerS:
+	    "Relative Velocity: " +
+	    asteroid.closeApproachData[0].relativeVelocity.kilometersPerSecond.beforeDecimal + " km/s"
+	case .kmPerH:
+	    "Relative Velocity: " +
+	    asteroid.closeApproachData[0].relativeVelocity.kilometersPerHour.beforeDecimal + " km/hr"
+	case .mph:
+	    "Relative Velocity: " +
+	    asteroid.closeApproachData[0].relativeVelocity.milesPerHour.beforeDecimal + " mph"
+	}
+    }
+    
+    var diameter: String {
+	switch viewModel.diameter {
+	case .kilometers:
+	    "Estimated Diameter: " +
+	    "\(asteroid.estimatedDiameter.kilometers.diameter)" + " km"
+	case .meters:
+	    "Estimated Diameter: " +
+	    "\(asteroid.estimatedDiameter.meters.diameter)" + " m"
+	case .miles:
+	    "Estimated Diameter: " +
+	    "\(asteroid.estimatedDiameter.miles.diameter)" + " miles"
+	case .feet:
+	    "Estimated Diameter: " +
+	    "\(asteroid.estimatedDiameter.feet.diameter)" + " ft"
+	}
+    }
 }

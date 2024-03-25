@@ -13,9 +13,9 @@ class Favorites {
     
     let key = "favorites"
     
-    var favorites: Set<String> {
+    var list: Array<String> {
 	didSet {
-	    let data = try? JSONEncoder().encode(favorites)
+	    let data = try? JSONEncoder().encode(list)
 	    UserDefaults.standard.setValue(data, forKey: key)
 	}
     }
@@ -25,24 +25,31 @@ class Favorites {
 	if let data = UserDefaults.standard.data(forKey: key) {
 	    
 	    do {
-		favorites = try JSONDecoder().decode(Set<String>.self, from: data)
+		list = try JSONDecoder().decode([String].self, from: data)
+		return
 	    } catch {
 		print(error.localizedDescription)
 	    }
 	}
-	favorites = []
+	list = []
     }
     
     func contains(_ str: String) -> Bool{
-	favorites.contains(str)
+	list.contains(str)
     }
     
     func add(_ id: String) {
-	favorites.insert(id)
+	list.append(id)
     }
     
     func delete(_ id: String) {
-	favorites.remove(id)
+	list.removeAll { itemID in
+	    itemID == id
+	}
+    }
+    
+    func deleteAt(offset: IndexSet) {
+	list.remove(atOffsets: offset)
     }
     
 }

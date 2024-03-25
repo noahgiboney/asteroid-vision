@@ -14,3 +14,8 @@ enum Distance: String, CaseIterable {
 enum Speed: String, CaseIterable {
     case kmPerS, kmPerH, mph
 }
+
+enum Diameter: String, CaseIterable {
+    case kilometers, meters, miles, feet
+}
+

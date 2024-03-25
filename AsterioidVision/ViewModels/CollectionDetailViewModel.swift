@@ -15,5 +15,7 @@ extension CollectionDetailView {
 	var distance: Distance = .kilometers
 	
 	var speed: Speed = .kmPerS
+	
+	var diameter: Diameter = .kilometers
     }
 }
