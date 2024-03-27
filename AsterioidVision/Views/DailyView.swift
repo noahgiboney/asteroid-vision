@@ -33,21 +33,14 @@ struct DailyView: View {
 		    
 		    ForEach(viewModel.asteroids) { asteroid in
 			VStack {
-			    
-			    NavigationLink {
-				DetailView(asteroid: asteroid)
-			    } label :{
-				VStack(alignment: .leading){
-				    Text(asteroid.name)
-				    
-				    Text(asteroid.isPotentiallyHazardousAsteroid ? "Hazard": "Non-Hazard")
-					.foregroundStyle(asteroid.isPotentiallyHazardousAsteroid ? .red : .black)
-					.font(.caption)
-				}
+			    VStack(alignment: .leading){
+				Text(asteroid.name)
+				
+				Text(asteroid.isPotentiallyHazardousAsteroid ? "Hazard": "Non-Hazard")
+				    .foregroundStyle(asteroid.isPotentiallyHazardousAsteroid ? .red : .black)
+				    .font(.caption)
 			    }
-			    
 			}
-			
 		    }
 		}
 	    }

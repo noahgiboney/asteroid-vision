@@ -14,8 +14,10 @@ struct CollectionDetailView: View {
     @AppStorage("diameter") var diameterSelection: Diameter = .kilometers
     @Environment(Favorites.self) private var favorites
     
-    @State private var viewModel = ViewModel()
     @State private var showingAlert = false
+    @State private var distance: Distance = .kilometers
+    @State private var speed: Speed = .kmPerS
+    @State private var diameter: Diameter = .kilometers
     
     var asteroid: CollectionNearEarthObject
     
@@ -47,7 +49,7 @@ struct CollectionDetailView: View {
 		        Text(missDistance)
 			Spacer()
 			Menu("", systemImage: "list.bullet") {
-			    Picker("", selection: $viewModel.distance) {
+			    Picker("", selection: $distance) {
 				ForEach(Distance.allCases, id: \.self) { unitCase in
 				    Text(unitCase.rawValue.capitalized).tag(unitCase)
 				}
@@ -59,7 +61,7 @@ struct CollectionDetailView: View {
 		        Text(velocity)
 			Spacer()
 			Menu("", systemImage: "list.bullet") {
-			    Picker("", selection: $viewModel.speed) {
+			    Picker("", selection: $speed) {
 				Text("km/s").tag(Speed.kmPerS)
 				Text("km/hour").tag(Speed.kmPerH)
 				Text("mph").tag(Speed.mph)
@@ -68,10 +70,10 @@ struct CollectionDetailView: View {
 		    }
 		    
 		    HStack{
-			Text(diameter)
+			Text(objectDiameter)
 			Spacer()
 			Menu("", systemImage: "list.bullet") {
-			    Picker("", selection: $viewModel.diameter) {
+			    Picker("", selection: $diameter) {
 				ForEach(Diameter.allCases, id: \.self) { unitCase in
 				    Text(unitCase.rawValue.capitalized).tag(unitCase)
 				}
@@ -112,18 +114,18 @@ struct CollectionDetailView: View {
 	    .navigationBarTitleDisplayMode(.inline)
 	    .listStyle(.plain)
 	    .onAppear {
-		viewModel.distance = distanceSelection
-		viewModel.speed = speedSelection
-		viewModel.diameter = diameterSelection
+		distance = distanceSelection
+		speed = speedSelection
+		diameter = diameterSelection
 	    }
-	    .onChange(of: viewModel.distance) {
-		distanceSelection = viewModel.distance
+	    .onChange(of: distance) {
+		distanceSelection = distance
 	    }
-	    .onChange(of: viewModel.speed) {
-		speedSelection = viewModel.speed
+	    .onChange(of: speed) {
+		speedSelection = speed
 	    }
-	    .onChange(of: viewModel.diameter) {
-		diameterSelection = viewModel.diameter
+	    .onChange(of: diameter) {
+		diameterSelection = diameter
 	    }
 	    .alert("Remove \(asteroid.name)", isPresented: $showingAlert) {
 		Button("Remove", role: .destructive) {
@@ -164,7 +166,7 @@ struct CollectionDetailView: View {
 extension CollectionDetailView {
     
     var missDistance: String {
-	switch viewModel.distance {
+	switch distance {
 	case .kilometers:
 	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.kilometers.beforeDecimal + " km"
 	case .miles:
@@ -177,7 +179,7 @@ extension CollectionDetailView {
     }
     
     var velocity: String {
-	switch viewModel.speed {
+	switch speed {
 	case .kmPerS:
 	    "Relative Velocity: " +
 	    asteroid.closeApproachData[0].relativeVelocity.kilometersPerSecond.beforeDecimal + " km/s"
@@ -190,8 +192,8 @@ extension CollectionDetailView {
 	}
     }
     
-    var diameter: String {
-	switch viewModel.diameter {
+    var objectDiameter: String {
+	switch diameter {
 	case .kilometers:
 	    "Estimated Diameter: " +
 	    "\(asteroid.estimatedDiameter.kilometers.diameter)" + " km"

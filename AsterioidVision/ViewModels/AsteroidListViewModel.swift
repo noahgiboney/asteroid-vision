@@ -7,16 +7,22 @@
 
 import Foundation
 
-extension HazerdousView {
+extension AsteroidListView {
+    
+    enum AsteroidType {
+	case hazard, nonHazard
+    }
     
     @Observable
     class ViewModel {
 	
-	var hazards: [CollectionNearEarthObject] = []
+	var asteroidCollection: [CollectionNearEarthObject] = []
 	
 	var response: CollectionResponse?
 	
-	var page = 0
+	var searchTerm = ""
+	
+	private var page = 0
 	
 	init() {
 	    loadHazards()
@@ -24,7 +30,7 @@ extension HazerdousView {
 	
 	func handleRefresh() {
 	    page = 0
-	    hazards.removeAll()
+	    asteroidCollection.removeAll()
 	    loadHazards()
 	}
 	
@@ -34,9 +40,7 @@ extension HazerdousView {
 		response = try await NetworkService.shared.fetchAsteroidCollection(page: page)
 		
 		if let response {
-		    hazards.append(contentsOf: response.nearEarthObjects.filter({ asteroid in
-			asteroid.isPotentiallyHazardousAsteroid
-		    }))
+		    asteroidCollection.append(contentsOf: response.nearEarthObjects)
 		}
 	    }
 	}

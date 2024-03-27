@@ -15,10 +15,10 @@ struct Home: View {
 	
 	TabView {
 	    
-	    HazerdousView()
+	    AsteroidListView(asteroidType: .hazard)
 		.tabItem { Label("Hazerdous", systemImage: "hazardsign") }
 	    
-	    CollectionView()
+	    AsteroidListView(asteroidType: .nonHazard)
 		.tabItem { Label("Collection", systemImage: "globe") }
 	    
 	    DailyView()
