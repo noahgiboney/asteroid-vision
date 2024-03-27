@@ -19,13 +19,13 @@ extension DailyView{
 	var date: Date = .now
 	
 	init() {
-	    loadAsteroids()
+	    loadNEO()
 	}
 	
-	func loadAsteroids() {
+	func loadNEO() {
 	    
 	    Task {
-		response = try await NetworkService.shared.fetchAsteroids()
+		response = try await NetworkService.shared.fetchNEO(for: date)
 		
 		if let response {
 		    asteroids = response.nearEarthObjects.objects

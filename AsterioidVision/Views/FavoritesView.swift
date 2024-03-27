@@ -43,12 +43,21 @@ struct FavoritesView: View {
 		
 		
 		ForEach(displayList) { item in
-		    HStack{
-		        Text(item.name)
-			Spacer()
-			VStack {
-			    Text("Coming")
-			    Text("\(item.closestApproach?.formattedDate ?? "NA")")
+		    NavigationLink {
+			CollectionDetailView(asteroid: item)
+		    } label: {
+			HStack{
+			    VStack(alignment: .leading){
+				Text(item.name)
+				Text(item.isPotentiallyHazardousAsteroid ? "Hazard" : "Non-Hazard")
+				    .font(.caption)
+				    .foregroundStyle(item.isPotentiallyHazardousAsteroid ? .red : .black)
+			    }
+			    Spacer()
+			    VStack(alignment: .trailing) {
+				Text(item.isPotentiallyHazardousAsteroid ? "Coming" : "Seen")
+				Text(item.isPotentiallyHazardousAsteroid ? item.closestApproach ?? "NA" : item.orbitalData.lastObservationDate )
+			    }
 			}
 		    }
 		}

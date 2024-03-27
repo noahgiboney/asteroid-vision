@@ -9,6 +9,10 @@ import SwiftUI
 
 struct CloseApproachCard: View { 
     
+    @AppStorage("distance") var distanceSelection: Distance = .miles
+    @AppStorage("speed") var speedSelection: Speed = .kmPerS
+    @AppStorage("diameter") var diameterSelection: Diameter = .kilometers
+    
     var entry: CloseApproachData
     
     var body: some View {
@@ -25,9 +29,9 @@ struct CloseApproachCard: View {
 		    .font(.caption)
 	    }
 	    
-	    Text("Traveling \(entry.relativeVelocity.kms)")
+	    Text(velocity)
 	    
-	    Text("Missed by \(entry.missDistance.km)")
+	    Text(missDistance)
 	}
 	.padding()
 	.background(.ultraThinMaterial)
@@ -39,6 +43,32 @@ struct CloseApproachCard: View {
     CloseApproachCard(entry: CloseApproachData.example)
 }
 
-extension CloseApproachData {
+extension CloseApproachCard {
     
+    var missDistance: String {
+	switch distanceSelection {
+	case .kilometers:
+	    "Missed By: " + entry.missDistance.kilometers.beforeDecimal + " km"
+	case .miles:
+	    "Missed By: " + entry.missDistance.miles.beforeDecimal + " miles"
+	case .lunar:
+	    "Missed By: " + entry.missDistance.lunar.beforeDecimal + " lunar distances"
+	case .astronomical:
+	    "Missed By: " + entry.missDistance.astronomical + " au"
+	}
+    }
+    
+    var velocity: String {
+	switch speedSelection {
+	case .kmPerS:
+	    "Traveling: " +
+	    entry.relativeVelocity.kilometersPerSecond.beforeDecimal + " km/s"
+	case .kmPerH:
+	    "Traveling: " +
+	    entry.relativeVelocity.kilometersPerHour.beforeDecimal + " km/hr"
+	case .mph:
+	    "Traveling: " +
+	    entry.relativeVelocity.milesPerHour.beforeDecimal + " mph"
+	}
+    }
 }

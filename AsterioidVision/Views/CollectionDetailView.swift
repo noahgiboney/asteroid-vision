@@ -14,10 +14,8 @@ struct CollectionDetailView: View {
     @AppStorage("diameter") var diameterSelection: Diameter = .kilometers
     @Environment(Favorites.self) private var favorites
     
+    @State private var showingSheet = false
     @State private var showingAlert = false
-    @State private var distance: Distance = .kilometers
-    @State private var speed: Speed = .kmPerS
-    @State private var diameter: Diameter = .kilometers
     
     var asteroid: CollectionNearEarthObject
     
@@ -43,46 +41,23 @@ struct CollectionDetailView: View {
 		}
 		.listRowSeparator(.hidden)
 		
-		Section(asteroid.name){
+		Section{
 		    
-		    HStack{
-		        Text(missDistance)
-			Spacer()
-			Menu("", systemImage: "list.bullet") {
-			    Picker("", selection: $distance) {
-				ForEach(Distance.allCases, id: \.self) { unitCase in
-				    Text(unitCase.rawValue.capitalized).tag(unitCase)
-				}
-			    }
-			}
-		    }
+		    Text(missDistance)
 		    
-		    HStack{
-		        Text(velocity)
-			Spacer()
-			Menu("", systemImage: "list.bullet") {
-			    Picker("", selection: $speed) {
-				Text("km/s").tag(Speed.kmPerS)
-				Text("km/hour").tag(Speed.kmPerH)
-				Text("mph").tag(Speed.mph)
-			    }
-			}
-		    }
+		    Text(velocity)
 		    
-		    HStack{
-			Text(objectDiameter)
-			Spacer()
-			Menu("", systemImage: "list.bullet") {
-			    Picker("", selection: $diameter) {
-				ForEach(Diameter.allCases, id: \.self) { unitCase in
-				    Text(unitCase.rawValue.capitalized).tag(unitCase)
-				}
-			    }
-			}
-		    }
+		    Text(objectDiameter)
 		    
 		    Text("Absolute Magnitude: \(asteroid.absoluteMagnitudeH.removeZerosFromEnd()) M")
 		    
+		}
+		
+		Section("Orbital Data") {
+		    
+		    Text("First Observation: \(asteroid.orbitalData.firstObservationDate.formattedDate)")
+		    
+		    Text("Last Observation: \(asteroid.orbitalData.lastObservationDate.formattedDate)")
 		}
 		
 		Section("Close Aproaches") {
@@ -90,43 +65,23 @@ struct CollectionDetailView: View {
 		    ScrollView(.horizontal, showsIndicators: false){
 			
 			HStack {
-			    ForEach(asteroid.closeApproachData, id: \.epochDateCloseApproach){ entry in
+			    ForEach(asteroid.closeApproachData.reversed(), id: \.epochDateCloseApproach){ entry in
 				CloseApproachCard(entry: entry)
+				    .padding(.leading, 10)
 			    }
 			}
 			.scrollTargetLayout()
 		    }
+
 		    .scrollTargetBehavior(.viewAligned)
-		    .contentMargins(20, for: .scrollContent)
+		    .listRowInsets(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+		    
 		}
 		.listRowSeparator(.hidden)
-		
-		Section("Orbital Data") {
-	    
-		    Text("First Observation: \(asteroid.orbitalData.firstObservationDate.formattedDate)")
-		    
-		    Text("Last OBservation: \(asteroid.orbitalData.lastObservationDate.formattedDate)")
-		    
-		}
-		
 	    }
+	    .listStyle(.plain)
 	    .navigationTitle(asteroid.name)
 	    .navigationBarTitleDisplayMode(.inline)
-	    .listStyle(.plain)
-	    .onAppear {
-		distance = distanceSelection
-		speed = speedSelection
-		diameter = diameterSelection
-	    }
-	    .onChange(of: distance) {
-		distanceSelection = distance
-	    }
-	    .onChange(of: speed) {
-		speedSelection = speed
-	    }
-	    .onChange(of: diameter) {
-		diameterSelection = diameter
-	    }
 	    .alert("Remove \(asteroid.name)", isPresented: $showingAlert) {
 		Button("Remove", role: .destructive) {
 		    favorites.delete(asteroid)
@@ -135,11 +90,25 @@ struct CollectionDetailView: View {
 		Text("Are you sure you want to remove \(asteroid.name) from your favorites?")
 	    }
 	    .toolbar {
-		Button{
-		    handleButtonPress()
-		} label: {
-		    Image(systemName: favorites.contains(asteroid) ? "star.fill" : "star")
+		ToolbarItem(placement: .topBarLeading){
+		    Button{
+			handleButtonPress()
+		    } label: {
+			Image(systemName: favorites.contains(asteroid) ? "star.fill" : "star")
+		    }
 		}
+		
+		ToolbarItem(placement: .topBarTrailing) {
+		    Button {
+			showingSheet.toggle()
+		    } label: {
+			Image(systemName: "ruler")
+		    }
+		}
+	    }
+	    .sheet(isPresented: $showingSheet) {
+		UnitView()
+		    .presentationDetents([.fraction(0.35)])
 	    }
 	}
     }
@@ -166,7 +135,7 @@ struct CollectionDetailView: View {
 extension CollectionDetailView {
     
     var missDistance: String {
-	switch distance {
+	switch distanceSelection {
 	case .kilometers:
 	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.kilometers.beforeDecimal + " km"
 	case .miles:
@@ -179,7 +148,7 @@ extension CollectionDetailView {
     }
     
     var velocity: String {
-	switch speed {
+	switch speedSelection {
 	case .kmPerS:
 	    "Relative Velocity: " +
 	    asteroid.closeApproachData[0].relativeVelocity.kilometersPerSecond.beforeDecimal + " km/s"
@@ -193,7 +162,7 @@ extension CollectionDetailView {
     }
     
     var objectDiameter: String {
-	switch diameter {
+	switch diameterSelection {
 	case .kilometers:
 	    "Estimated Diameter: " +
 	    "\(asteroid.estimatedDiameter.kilometers.diameter)" + " km"

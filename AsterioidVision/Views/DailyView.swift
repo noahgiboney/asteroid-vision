@@ -11,7 +11,6 @@ struct DailyView: View {
     
     @State private var viewModel = ViewModel()
     
-    
     var body: some View {
 	NavigationStack {
 	    
@@ -26,11 +25,9 @@ struct DailyView: View {
 		.listRowSeparator(.hidden)
 		
 		DatePicker("Near earth objects on:", selection: $viewModel.date, in: ...Date(), displayedComponents: .date)
-		    .listRowSeparator(.hidden)
+		
 		    .font(.headline)
 		
-		Section("Near Earth Objects"){
-		    
 		    ForEach(viewModel.asteroids) { asteroid in
 			VStack {
 			    VStack(alignment: .leading){
@@ -42,10 +39,13 @@ struct DailyView: View {
 			    }
 			}
 		    }
-		}
 	    }
-	    .navigationTitle("\(viewModel.date.shortDate) Asteroids")
+	    .navigationTitle("\(viewModel.date.shortDate) NEO")
 	    .listStyle(.plain)
+	    .onChange(of: viewModel.date) {
+		viewModel.asteroids.removeAll()
+		viewModel.loadNEO()
+	    }
 	}
     }
 }

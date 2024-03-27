@@ -19,9 +19,9 @@ class NetworkService {
     
     static let shared = NetworkService()
     
-    func fetchAsteroids() async throws -> Response?{
-	
-	let url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=\(Date().todayDate)&end_date=\(Date().todayDate)&api_key=\(key)"
+    func fetchNEO(for date: Date) async throws -> Response?{
+	print(date);
+	let url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=\(date.todayDate)&end_date=\(date.todayDate)&api_key=\(key)"
 	
 	do {
 	    
@@ -40,8 +40,12 @@ class NetworkService {
 	    
 	    return decodedData
 	    
-	} catch {
-	    self.error = error
+	}  catch APIError.url{
+	    print("NEO: invalid url")
+	} catch APIError.server {
+	    print("NEO: server error")
+	} catch APIError.data{
+	    print("NEO: invalid data")
 	}
 	return nil
     }
@@ -98,8 +102,12 @@ class NetworkService {
 	    }
 	    return decodedData
 	    
-	} catch {
-	    self.error = error
+	}  catch APIError.url{
+	    print("collection: invalid url")
+	} catch APIError.server {
+	    print("collection: server error")
+	} catch APIError.data{
+	    print("collection: invalid data")
 	}
 	return nil
     }
