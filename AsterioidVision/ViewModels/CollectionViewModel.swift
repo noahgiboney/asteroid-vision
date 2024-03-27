@@ -16,18 +16,26 @@ extension CollectionView {
 	
 	var response: CollectionResponse?
 	
+	private var page = 1
+	
 	init () {
 	   loadCollection()
 	}
 	
+	func handleRefresh() {
+	    page = 0
+	    collection.removeAll()
+	    loadCollection()
+	}
+	
 	func loadCollection() {
 	    Task {
-		response = try await NetworkService.shared.fetchAsteroidCollection(page: 1, size: 20)
+		response = try await NetworkService.shared.fetchAsteroidCollection(page: page)
 		
 		if let response {
-		    collection = response.nearEarthObjects.filter({ asteroid in
+		    collection.append(contentsOf: response.nearEarthObjects.filter({ asteroid in
 			!asteroid.isPotentiallyHazardousAsteroid
-		    })
+		    }))
 		}
 	    }
 	}

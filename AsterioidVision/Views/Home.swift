@@ -19,7 +19,7 @@ struct Home: View {
 		.tabItem { Label("Hazerdous", systemImage: "hazardsign") }
 	    
 	    CollectionView()
-		.tabItem { Label("Collection", systemImage: "globe.central.south.asia.fill") }
+		.tabItem { Label("Collection", systemImage: "globe") }
 	    
 	    DailyView()
 		.tabItem { Label("Daily", systemImage: "calendar") }

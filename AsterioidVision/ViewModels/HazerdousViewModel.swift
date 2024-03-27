@@ -16,18 +16,27 @@ extension HazerdousView {
 	
 	var response: CollectionResponse?
 	
+	var page = 0
+	
 	init() {
+	    loadHazards()
+	}
+	
+	func handleRefresh() {
+	    page = 0
+	    hazards.removeAll()
 	    loadHazards()
 	}
 	
 	func loadHazards() {
 	    Task {
-		response = try await NetworkService.shared.fetchAsteroidCollection(page: 1, size: 20)
+		page += 1
+		response = try await NetworkService.shared.fetchAsteroidCollection(page: page)
 		
 		if let response {
-		    hazards = response.nearEarthObjects.filter({ asteroid in
+		    hazards.append(contentsOf: response.nearEarthObjects.filter({ asteroid in
 			asteroid.isPotentiallyHazardousAsteroid
-		    })
+		    }))
 		}
 	    }
 	}

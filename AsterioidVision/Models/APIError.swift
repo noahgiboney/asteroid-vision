@@ -18,7 +18,7 @@ enum APIError: Error {
 	switch self {
 	case .server: "There was an error with the server. Please try again later."
 	case .url:
-	    ""
+	    "The URL is invalid. Plese try again later"
 	case .data:
 	    "The Asteroid data is invalid. Please try again later."
 	    

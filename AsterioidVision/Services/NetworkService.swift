@@ -15,6 +15,8 @@ class NetworkService {
     
     private init() {}
     
+    var error: Error?
+    
     static let shared = NetworkService()
     
     func fetchAsteroids() async throws -> Response?{
@@ -38,12 +40,8 @@ class NetworkService {
 	    
 	    return decodedData
 	    
-	} catch APIError.url{
-	    print("daily approaches: invalid url")
-	} catch APIError.server {
-	    print("daily approaches: server error")
-	} catch APIError.data{
-	    print("daily approaches: invalid data")
+	} catch {
+	    self.error = error
 	}
 	return nil
     }
@@ -76,9 +74,9 @@ class NetworkService {
 	return nil
     }
     
-    func fetchAsteroidCollection(page: Int, size: Int) async throws -> CollectionResponse? {
+    func fetchAsteroidCollection(page: Int) async throws -> CollectionResponse? {
 	
-	let url = "https://api.nasa.gov/neo/rest/v1/neo/browse?page=\(page)&\(size)=20&api_key=\(key)"
+	let url = "https://api.nasa.gov/neo/rest/v1/neo/browse?page=\(page)&size=20&api_key=\(key)"
 	
 	do {
 	    
@@ -100,17 +98,9 @@ class NetworkService {
 	    }
 	    return decodedData
 	    
-	} catch APIError.url{
-	    print("collection: invalid url")
-	} catch APIError.server {
-	    print("collection: server error")
-	} catch APIError.data{
-	    print("collection: invalid data")
+	} catch {
+	    self.error = error
 	}
 	return nil
-	
     }
-    
-    
-    
 }

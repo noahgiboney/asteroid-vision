@@ -25,7 +25,6 @@
 		E23820772BAB77230095D4FC /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23820762BAB77230095D4FC /* NetworkService.swift */; };
 		E23820792BAB77580095D4FC /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23820782BAB77580095D4FC /* APIError.swift */; };
 		E243AA382BABFAD100B87D13 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E243AA372BABFAD100B87D13 /* Helpers.swift */; };
-		E28C3EE62BAD24C400BADDA6 /* AsteroidCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E28C3EE52BAD24C400BADDA6 /* AsteroidCard.swift */; };
 		E293805E2BB0914A002F596B /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293805D2BB0914A002F596B /* CollectionView.swift */; };
 		E29380602BB0919E002F596B /* CollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293805F2BB0919E002F596B /* CollectionViewModel.swift */; };
 		E29380622BB09891002F596B /* HazerdousView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380612BB09891002F596B /* HazerdousView.swift */; };
@@ -34,9 +33,7 @@
 		E29380682BB0D7AF002F596B /* CollectionDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380672BB0D7AF002F596B /* CollectionDetailViewModel.swift */; };
 		E293806A2BB0EA75002F596B /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380692BB0EA75002F596B /* FavoritesView.swift */; };
 		E293806C2BB0EF77002F596B /* CloseApproachCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293806B2BB0EF77002F596B /* CloseApproachCard.swift */; };
-		E29380702BB118BD002F596B /* saturn.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E293806F2BB118BD002F596B /* saturn.usdz */; };
 		E29380722BB119FB002F596B /* venus.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E29380712BB119FB002F596B /* venus.usdz */; };
-		E29380742BB132A0002F596B /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380732BB132A0002F596B /* FavoritesService.swift */; };
 		E29380762BB13356002F596B /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380752BB13356002F596B /* Favorites.swift */; };
 		E2D863C22BAE01D000A4260D /* asteroid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E2D863C12BAE01D000A4260D /* asteroid.usdz */; };
 		E2DE1D242BA68250009E5B85 /* AsterioidVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE1D232BA68250009E5B85 /* AsterioidVisionApp.swift */; };
@@ -65,7 +62,6 @@
 		E23820762BAB77230095D4FC /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		E23820782BAB77580095D4FC /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		E243AA372BABFAD100B87D13 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
-		E28C3EE52BAD24C400BADDA6 /* AsteroidCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidCard.swift; sourceTree = "<group>"; };
 		E293805D2BB0914A002F596B /* CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionView.swift; sourceTree = "<group>"; };
 		E293805F2BB0919E002F596B /* CollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewModel.swift; sourceTree = "<group>"; };
 		E29380612BB09891002F596B /* HazerdousView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HazerdousView.swift; sourceTree = "<group>"; };
@@ -74,9 +70,7 @@
 		E29380672BB0D7AF002F596B /* CollectionDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailViewModel.swift; sourceTree = "<group>"; };
 		E29380692BB0EA75002F596B /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		E293806B2BB0EF77002F596B /* CloseApproachCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseApproachCard.swift; sourceTree = "<group>"; };
-		E293806F2BB118BD002F596B /* saturn.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = saturn.usdz; sourceTree = "<group>"; };
 		E29380712BB119FB002F596B /* venus.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = venus.usdz; sourceTree = "<group>"; };
-		E29380732BB132A0002F596B /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		E29380752BB13356002F596B /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		E2D863C12BAE01D000A4260D /* asteroid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = asteroid.usdz; sourceTree = "<group>"; };
 		E2DE1D202BA68250009E5B85 /* AsterioidVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsterioidVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -102,7 +96,6 @@
 			isa = PBXGroup;
 			children = (
 				E23820762BAB77230095D4FC /* NetworkService.swift */,
-				E29380732BB132A0002F596B /* FavoritesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -111,9 +104,9 @@
 			isa = PBXGroup;
 			children = (
 				E29380752BB13356002F596B /* Favorites.swift */,
-				E23204912BAE77A1003D9322 /* DailyViewModel.swift */,
-				E293805F2BB0919E002F596B /* CollectionViewModel.swift */,
 				E22700412BAFB46800844860 /* HazerdousViewModel.swift */,
+				E293805F2BB0919E002F596B /* CollectionViewModel.swift */,
+				E23204912BAE77A1003D9322 /* DailyViewModel.swift */,
 				E29380672BB0D7AF002F596B /* CollectionDetailViewModel.swift */,
 				E23661FD2BAF675C00AADA8F /* DetailViewModel.swift */,
 			);
@@ -126,7 +119,6 @@
 				E29380632BB09EF5002F596B /* pluto.usdz */,
 				E2D863C12BAE01D000A4260D /* asteroid.usdz */,
 				E23204992BAE905C003D9322 /* earth.usdz */,
-				E293806F2BB118BD002F596B /* saturn.usdz */,
 				E29380712BB119FB002F596B /* venus.usdz */,
 			);
 			path = "3D-Objects";
@@ -194,12 +186,11 @@
 			children = (
 				E232048D2BAE7583003D9322 /* Home.swift */,
 				E29380612BB09891002F596B /* HazerdousView.swift */,
-				E232048F2BAE772C003D9322 /* DailyView.swift */,
 				E293805D2BB0914A002F596B /* CollectionView.swift */,
+				E232048F2BAE772C003D9322 /* DailyView.swift */,
 				E29380692BB0EA75002F596B /* FavoritesView.swift */,
 				E29380652BB0D766002F596B /* CollectionDetailView.swift */,
 				E23661F92BAF629200AADA8F /* DetailView.swift */,
-				E28C3EE52BAD24C400BADDA6 /* AsteroidCard.swift */,
 				E2E78D452BAE051500158AB0 /* MySceneView.swift */,
 				E293806B2BB0EF77002F596B /* CloseApproachCard.swift */,
 			);
@@ -265,7 +256,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E29380722BB119FB002F596B /* venus.usdz in Resources */,
-				E29380702BB118BD002F596B /* saturn.usdz in Resources */,
 				E29380642BB09EF5002F596B /* pluto.usdz in Resources */,
 				E232049A2BAE905C003D9322 /* earth.usdz in Resources */,
 				E2D863C22BAE01D000A4260D /* asteroid.usdz in Resources */,
@@ -284,7 +274,6 @@
 				E29380682BB0D7AF002F596B /* CollectionDetailViewModel.swift in Sources */,
 				E227004A2BAFE5FF00844860 /* CollectionResponse.swift in Sources */,
 				E23204902BAE772C003D9322 /* DailyView.swift in Sources */,
-				E29380742BB132A0002F596B /* FavoritesService.swift in Sources */,
 				E293806A2BB0EA75002F596B /* FavoritesView.swift in Sources */,
 				E29380662BB0D766002F596B /* CollectionDetailView.swift in Sources */,
 				E23661FA2BAF629200AADA8F /* DetailView.swift in Sources */,
@@ -292,7 +281,6 @@
 				E23820792BAB77580095D4FC /* APIError.swift in Sources */,
 				E293805E2BB0914A002F596B /* CollectionView.swift in Sources */,
 				E23820772BAB77230095D4FC /* NetworkService.swift in Sources */,
-				E28C3EE62BAD24C400BADDA6 /* AsteroidCard.swift in Sources */,
 				E29380602BB0919E002F596B /* CollectionViewModel.swift in Sources */,
 				E29380762BB13356002F596B /* Favorites.swift in Sources */,
 				E22700442BAFE17200844860 /* CloseApproachData.swift in Sources */,

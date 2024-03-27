@@ -12,6 +12,8 @@ struct HazerdousView: View {
     @Environment(Favorites.self) var favorites
     @State private var viewModel = ViewModel()
     
+    @State private var showingAlert = false
+    
     var body: some View {
 	
 	NavigationStack {
@@ -31,20 +33,49 @@ struct HazerdousView: View {
 			NavigationLink{
 			    CollectionDetailView(asteroid: asteroid)
 			} label: {
-			    Text(asteroid.nameLimited)
+			    HStack{
+				if favorites.contains(asteroid) {
+				    Image(systemName: "star.fill")
+				}
+				Text(asteroid.name)
+				Spacer()
+				VStack {
+				    Text("Coming")
+				    Text("\(asteroid.closestApproach?.formattedDate ?? "NA")")
+				}
+			    }
+			    .onAppear {
+				if asteroid == viewModel.hazards.last{
+				    viewModel.loadHazards()
+				}
+			    }
 			}
 			.swipeActions {
-			    if favorites.contains(asteroid.id) == false{
-			        Button{
-				    favorites.add(asteroid.id)
+			    if favorites.contains(asteroid) == false {
+				Button{
+				    favorites.add(asteroid)
 				} label: {
 				    Image(systemName: "star")
 				}
 				.tint(.blue)
 			    }
+			    else {
+				Button{
+				    favorites.delete(asteroid)
+				} label: {
+				    Image(systemName: "star.slash")
+				}
+				.tint(.red)
+			    }
 			}
 		    }
 		}
+		
+	    }
+	    .refreshable {
+		viewModel.handleRefresh()
+	    }
+	    .alert("alert", isPresented: $showingAlert) {
 		
 	    }
 	    .navigationTitle("Hazerdous")

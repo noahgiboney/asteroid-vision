@@ -14,8 +14,8 @@ struct FavoritesView: View {
     var body: some View {
 	NavigationStack {
 	    List{
-		ForEach(favorites.list.sorted(by: <), id: \.self) { item in
-		    Text(item)
+		ForEach(favorites.list) { item in
+		    Text(item.name)
 		}
 		.onDelete(perform: { indexSet in
 		    favorites.deleteAt(offset: indexSet)

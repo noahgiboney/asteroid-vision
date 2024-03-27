@@ -20,6 +20,12 @@ struct CloseApproachData: Codable {
     var date: String {
 	closeApproachDate.formattedDate
     }
+    
+    var approachDate: Date? {
+	let formatter = DateFormatter()
+	formatter.dateFormat = "yyyy-MM-dd"
+	return formatter.date(from: closeApproachDate)
+    }
 }
 
 struct RelativeVelocity: Codable{

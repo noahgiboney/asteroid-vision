@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CollectionView: View {
     
+    @Environment(Favorites.self) private var favorites
     @State private var viewModel = ViewModel()
     
     var body: some View {
@@ -31,13 +32,24 @@ struct CollectionView: View {
 			NavigationLink{
 			    CollectionDetailView(asteroid: asteroid)
 			} label: {
-			    Text(asteroid.nameLimited)
+			    HStack{
+				Text(asteroid.name)
+				Spacer()
+				if favorites.contains(asteroid) {
+				    Image(systemName: "star.fill")
+				}
+			    }
+			    .onAppear {
+				if asteroid == viewModel.collection.last{
+				    viewModel.loadCollection()
+				}
+			    }
 			}
 		    }
 		}
 	    }
 	    .refreshable {
-		viewModel.loadCollection()
+		viewModel.handleRefresh()
 	    }
 	    .navigationTitle("Collection")
 	    .listStyle(.plain)
@@ -47,4 +59,5 @@ struct CollectionView: View {
 
 #Preview {
     CollectionView()
+	.environment(Favorites())
 }

@@ -108,7 +108,7 @@ struct CollectionDetailView: View {
 		}
 		
 	    }
-	    .navigationTitle(asteroid.nameLimited)
+	    .navigationTitle(asteroid.name)
 	    .navigationBarTitleDisplayMode(.inline)
 	    .listStyle(.plain)
 	    .onAppear {
@@ -125,27 +125,27 @@ struct CollectionDetailView: View {
 	    .onChange(of: viewModel.diameter) {
 		diameterSelection = viewModel.diameter
 	    }
-	    .alert("Remove \(asteroid.nameLimited)", isPresented: $showingAlert) {
+	    .alert("Remove \(asteroid.name)", isPresented: $showingAlert) {
 		Button("Remove", role: .destructive) {
-		    favorites.delete(asteroid.id)
+		    favorites.delete(asteroid)
 		}
 	    } message: {
-		Text("Are you sure you want to remove \(asteroid.nameLimited) from your favorites?")
+		Text("Are you sure you want to remove \(asteroid.name) from your favorites?")
 	    }
 	    .toolbar {
 		Button{
 		    handleButtonPress()
 		} label: {
-		    Image(systemName: favorites.contains(asteroid.id) ? "star.fill" : "star")
+		    Image(systemName: favorites.contains(asteroid) ? "star.fill" : "star")
 		}
 	    }
 	}
     }
     
     func handleButtonPress() {
-	if favorites.contains(asteroid.id) == false{
+	if favorites.contains(asteroid) == false{
 	    withAnimation{
-		favorites.add(asteroid.id)
+		favorites.add(asteroid)
 	    }
 	}
 	else {

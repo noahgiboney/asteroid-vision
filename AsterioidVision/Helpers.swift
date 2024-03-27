@@ -34,7 +34,7 @@ extension String {
 	}
 	
 	let outputFormatter = DateFormatter()
-	outputFormatter.dateFormat = "M/d/yy"
+	outputFormatter.dateFormat = "M/d/yyyy"
 	
 	return outputFormatter.string(from: date)
     }
