@@ -65,7 +65,7 @@ struct CollectionDetailView: View {
 		    ScrollView(.horizontal, showsIndicators: false){
 			
 			HStack {
-			    ForEach(asteroid.closeApproachData.reversed(), id: \.epochDateCloseApproach){ entry in
+			    ForEach(asteroid.closeApproachData, id: \.epochDateCloseApproach){ entry in
 				CloseApproachCard(entry: entry)
 				    .padding(.leading, 10)
 			    }

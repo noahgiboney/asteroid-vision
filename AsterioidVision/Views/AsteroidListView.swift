@@ -45,7 +45,7 @@ struct AsteroidListView: View {
 				}
 			    }
 			    .onAppear {
-				if asteroid == viewModel.asteroidCollection.last{
+				if asteroid == displayedItems.last{
 				    viewModel.loadHazards()
 				}
 			    }
