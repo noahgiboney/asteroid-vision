@@ -11,6 +11,8 @@ struct AsteroidListView: View {
     
     @Environment(Favorites.self) var favorites
     @State private var viewModel = ViewModel()
+    @State private var date = Date()
+    
     
     var asteroidType: AsteroidType
     
@@ -100,9 +102,9 @@ extension AsteroidListView {
     var planet: String {
 	switch asteroidType {
 	case .hazard:
-	    "pluto.usdz"
-	case .nonHazard:
 	    "venus.usdz"
+	case .nonHazard:
+	    "earth.usdz"
 	}
     }
     

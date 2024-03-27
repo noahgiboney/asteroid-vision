@@ -22,6 +22,7 @@ class NetworkService {
     func fetchNEO(for date: Date) async throws -> Response?{
 	print(date);
 	let url = "https://api.nasa.gov/neo/rest/v1/feed?start_date=\(date.todayDate)&end_date=\(date.todayDate)&api_key=\(key)"
+	print("fetching for ... \(date.todayDate)")
 	
 	do {
 	    
@@ -37,8 +38,6 @@ class NetworkService {
 	    guard let decodedData = try? decoder.decode(Response.self, from: data) else {
 		throw APIError.data
 	    }
-	    
-	    return decodedData
 	    
 	}  catch APIError.url{
 	    print("NEO: invalid url")

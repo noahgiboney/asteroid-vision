@@ -137,11 +137,11 @@ extension CollectionDetailView {
     var missDistance: String {
 	switch distanceSelection {
 	case .kilometers:
-	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.kilometers.beforeDecimal + " km"
+	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.kilometers + " km"
 	case .miles:
-	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.miles.beforeDecimal + " miles"
+	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.miles + " miles"
 	case .lunar:
-	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.lunar.beforeDecimal + " lunar distances"
+	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.lunar + " lunar distances"
 	case .astronomical:
 	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.astronomical + " au"
 	}

@@ -21,9 +21,6 @@ struct Home: View {
 	    AsteroidListView(asteroidType: .nonHazard)
 		.tabItem { Label("Non-Hazerdous", systemImage: "globe") }
 	    
-	    DailyView()
-		.tabItem { Label("Daily", systemImage: "calendar") }
-	    
 	    FavoritesView()
 		.tabItem { Label("Favorites", systemImage: "star") }
 	    
