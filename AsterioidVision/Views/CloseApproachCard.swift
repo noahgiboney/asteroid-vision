@@ -34,7 +34,7 @@ struct CloseApproachCard: View {
 	    Text(missDistance)
 	}
 	.padding()
-	.background(Color.black.opacity(0.2))
+	.background(Color.gray.opacity(0.3))
 	.clipShape(RoundedRectangle(cornerRadius: 10))
     }
 }

@@ -13,7 +13,6 @@ struct AsteroidListView: View {
     @State private var viewModel = ViewModel()
     @State private var date = Date()
     
-    
     var asteroidType: AsteroidType
     
     var body: some View {
