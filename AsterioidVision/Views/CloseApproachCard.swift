@@ -23,7 +23,6 @@ struct CloseApproachCard: View {
 		    .font(.headline)
 		
 		Text(entry.date)
-		    .font(.caption)
 		
 		Text("Epoch \(entry.epochDateCloseApproach)")
 		    .font(.caption)
@@ -31,7 +30,7 @@ struct CloseApproachCard: View {
 	    
 	    Text(velocity)
 	    
-	    Text(missDistance)
+	    Text("Distance from \(entry.orbitingBody): \(missDistance)")
 	}
 	.padding()
 	.background(Color.gray.opacity(0.3))
@@ -48,13 +47,13 @@ extension CloseApproachCard {
     var missDistance: String {
 	switch distanceSelection {
 	case .kilometers:
-	    "Distace From Earth: " + entry.missDistance.kilometers.beforeDecimal + " km"
+	    entry.missDistance.kilometers.beforeDecimal + " km"
 	case .miles:
-	    "Distace From Earth: " + entry.missDistance.miles.beforeDecimal + " miles"
+	    entry.missDistance.miles.beforeDecimal + " miles"
 	case .lunar:
-	    "Distace From Earth: " + entry.missDistance.lunar.beforeDecimal + " lunar distances"
+	    entry.missDistance.lunar.beforeDecimal + " lunar distances"
 	case .astronomical:
-	    "Distace From Earth: " + entry.missDistance.astronomical + " au"
+	    entry.missDistance.astronomical + " au"
 	}
     }
     

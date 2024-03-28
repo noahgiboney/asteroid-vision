@@ -17,6 +17,8 @@ class NetworkService {
     
     var error: Error?
     
+    var errorMessage: String?
+    
     static let shared = NetworkService()
     
     func fetchAsteroidCollection(page: Int) async throws -> Response? {
@@ -41,14 +43,15 @@ class NetworkService {
 	    guard let decodedData = try? decoder.decode(Response.self, from: data) else {
 		throw APIError.data
 	    }
+	    errorMessage = nil
 	    return decodedData
 	    
 	}  catch APIError.url{
-	    print("collection: invalid url")
+	    errorMessage = "Invalid URL. Please try again later."
 	} catch APIError.server {
-	    print("collection: server error")
+	    errorMessage = "Service Unavaible. Please try again later."
 	} catch APIError.data{
-	    print("collection: invalid data")
+	    errorMessage = "Invalid request. Please try again later."
 	}
 	return nil
     }

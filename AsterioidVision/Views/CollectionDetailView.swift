@@ -60,13 +60,13 @@ struct CollectionDetailView: View {
 		    Text("Absolute Magnitude: \(asteroid.absoluteMagnitudeH.removeZerosFromEnd()) M")
 		}
 		
-		Section("Close Aproaches") {
+		Section("Future Approaches") {
 		    ScrollView(.horizontal, showsIndicators: false){
 			
 			HStack {
 			    ForEach(earthApproaches, id: \.epochDateCloseApproach){ entry in
 				CloseApproachCard(entry: entry)
-				    .padding(.leading, 10)
+				    .padding(.leading, 15)
 			    }
 			}
 			.scrollTargetLayout()

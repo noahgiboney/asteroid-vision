@@ -15,7 +15,7 @@ struct AsteroidListView: View {
     @Environment(Favorites.self) var favorites
     
     @State private var viewModel = ViewModel()
-    @State private var date = Date()
+    @State private var showingErrorAlert = false
     
     var asteroidType: AsteroidType
     
@@ -94,6 +94,9 @@ struct AsteroidListView: View {
 	    .listStyle(.plain)
 	    .searchable(text: $viewModel.searchTerm, prompt: "Search by name")
 	    .refreshable {
+		if NetworkService.shared.errorMessage != nil{
+		    showingErrorAlert.toggle()
+		}
 		viewModel.handleRefresh()
 	    }
 	    .toolbar {
@@ -107,8 +110,16 @@ struct AsteroidListView: View {
 		FilterView(minVelocity: $viewModel.minVelocity, minDiameter: $viewModel.minDiameter, minMagnitude: $viewModel.minMagnitude)
 		    .presentationDetents([.medium])
 	    }
-	    .onAppear {
-		print(viewModel.minVelocity)
+	    .onChange(of: NetworkService.shared.errorMessage) {
+		if NetworkService.shared.errorMessage != nil {
+		    showingErrorAlert.toggle()
+		}
+	    }
+	    .alert("Error", isPresented: $showingErrorAlert) {
+	    } message: {
+		if let message = NetworkService.shared.errorMessage {
+		    Text(message)
+		}
 	    }
 	}
     }
