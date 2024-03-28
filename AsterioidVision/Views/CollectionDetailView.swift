@@ -17,7 +17,7 @@ struct CollectionDetailView: View {
     @State private var showingSheet = false
     @State private var showingAlert = false
     
-    var asteroid: CollectionNearEarthObject
+    var asteroid: NearEarthObject
     
     var body: some View {
 	
@@ -128,7 +128,7 @@ struct CollectionDetailView: View {
 }
 
 #Preview {
-    CollectionDetailView(asteroid: CollectionNearEarthObject.example)
+    CollectionDetailView(asteroid: NearEarthObject.example)
 	.environment(Favorites())
 }
 

@@ -64,8 +64,10 @@ struct UnitView: View {
 	    }
 	    .toolbar {
 		ToolbarItem(placement: .topBarLeading) {
-		    Button("Dismiss") {
+		    Button{
 			dismiss()
+		    } label: {
+			Image(systemName: "x.circle.fill")
 		    }
 		}
 	    }

@@ -13,7 +13,7 @@ class Favorites {
     
     let key = "favorites"
     
-    var list: Array<CollectionNearEarthObject> {
+    var list: Array<NearEarthObject> {
 	didSet {
 	    let data = try? JSONEncoder().encode(list)
 	    UserDefaults.standard.setValue(data, forKey: key)
@@ -25,7 +25,7 @@ class Favorites {
 	if let data = UserDefaults.standard.data(forKey: key) {
 	    
 	    do {
-		list = try JSONDecoder().decode([CollectionNearEarthObject].self, from: data)
+		list = try JSONDecoder().decode([NearEarthObject].self, from: data)
 		return
 	    } catch {
 		print(error.localizedDescription)
@@ -34,15 +34,15 @@ class Favorites {
 	list = []
     }
     
-    func contains(_ item: CollectionNearEarthObject) -> Bool{
+    func contains(_ item: NearEarthObject) -> Bool{
 	list.contains(item)
     }
     
-    func add(_ item: CollectionNearEarthObject) {
+    func add(_ item: NearEarthObject) {
 	list.append(item)
     }
     
-    func delete(_ item: CollectionNearEarthObject) {
+    func delete(_ item: NearEarthObject) {
 	list.removeAll { itemID in
 	    item == itemID
 	}

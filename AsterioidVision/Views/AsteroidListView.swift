@@ -121,8 +121,8 @@ extension AsteroidListView {
 	}
     }
     
-    var displayedItems: [CollectionNearEarthObject] {
-	let list: [CollectionNearEarthObject]
+    var displayedItems: [NearEarthObject] {
+	let list: [NearEarthObject]
 	
 	switch asteroidType {
 	case .hazard:
@@ -145,7 +145,7 @@ extension AsteroidListView {
 	}
     }
     
-    func approachDate(for asteroid: CollectionNearEarthObject) -> String {
+    func approachDate(for asteroid: NearEarthObject) -> String {
 	
 	if asteroidType == .hazard {
 	    return asteroid.closestApproach ?? "NA"

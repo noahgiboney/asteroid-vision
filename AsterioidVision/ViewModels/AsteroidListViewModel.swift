@@ -16,9 +16,9 @@ extension AsteroidListView {
     @Observable
     class ViewModel {
 	
-	var asteroidCollection: [CollectionNearEarthObject] = []
+	var asteroidCollection: [NearEarthObject] = []
 	
-	var response: CollectionResponse?
+	var response: Response?
 	
 	var searchTerm = ""
 	

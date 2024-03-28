@@ -16,7 +16,7 @@ struct FavoritesView: View {
     @Environment(Favorites.self) var favorites
     @State private var showingType: FavoriteType = .all
     
-    var displayList: [CollectionNearEarthObject] {
+    var displayList: [NearEarthObject] {
 	switch showingType {
 	case .all:
 	    favorites.list
