@@ -22,9 +22,12 @@ extension AsteroidListView {
 	
 	var searchTerm = ""
 	
+	var isLoading = false
+	
 	private var page = 0
 	
 	init() {
+	    isLoading = true
 	    loadHazards()
 	}
 	
@@ -35,12 +38,14 @@ extension AsteroidListView {
 	}
 	
 	func loadHazards() {
+	    isLoading = true
 	    Task {
 		page += 1
 		response = try await NetworkService.shared.fetchAsteroidCollection(page: page)
 		
 		if let response {
 		    asteroidCollection.append(contentsOf: response.nearEarthObjects)
+		    isLoading = false
 		}
 	    }
 	}

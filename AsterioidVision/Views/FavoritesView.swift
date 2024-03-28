@@ -42,28 +42,33 @@ struct FavoritesView: View {
 		.pickerStyle(.segmented)
 		
 		
-		ForEach(displayList) { item in
-		    NavigationLink {
-			CollectionDetailView(asteroid: item)
-		    } label: {
-			HStack{
-			    VStack(alignment: .leading){
-				Text(item.name)
-				Text(item.isPotentiallyHazardousAsteroid ? "Hazard" : "Non-Hazard")
-				    .font(.caption)
-				    .foregroundStyle(item.isPotentiallyHazardousAsteroid ? .red : .black)
-			    }
-			    Spacer()
-			    VStack(alignment: .trailing) {
-				Text(item.isPotentiallyHazardousAsteroid ? "Coming" : "Seen")
-				Text(item.isPotentiallyHazardousAsteroid ? item.closestApproach ?? "NA" : item.orbitalData.lastObservationDate )
+		if favorites.list.isEmpty {
+		    ContentUnavailableView("You have no favorites", image: "asteroid")
+		}
+		else {
+		    ForEach(displayList) { item in
+			NavigationLink {
+			    CollectionDetailView(asteroid: item)
+			} label: {
+			    HStack{
+				VStack(alignment: .leading){
+				    Text(item.name)
+				    Text(item.isPotentiallyHazardousAsteroid ? "Hazard" : "Non-Hazard")
+					.font(.caption)
+					.foregroundStyle(item.isPotentiallyHazardousAsteroid ? .red : .black)
+				}
+				Spacer()
+				VStack(alignment: .trailing) {
+				    Text(item.isPotentiallyHazardousAsteroid ? "Coming" : "Seen")
+				    Text(item.isPotentiallyHazardousAsteroid ? item.closestApproach ?? "NA" : item.orbitalData.lastObservationDate )
+				}
 			    }
 			}
 		    }
+		    .onDelete(perform: { indexSet in
+			favorites.deleteAt(offset: indexSet)
+		    })
 		}
-		.onDelete(perform: { indexSet in
-		    favorites.deleteAt(offset: indexSet)
-		})
 	    }
 	    .navigationTitle("Favorites")
 	    .navigationBarTitleDisplayMode(.inline)

@@ -19,7 +19,7 @@ struct Home: View {
 		.tabItem { Label("Hazerdous", systemImage: "hazardsign") }
 	    
 	    AsteroidListView(asteroidType: .nonHazard)
-		.tabItem { Label("Non-Hazerdous", systemImage: "globe") }
+		.tabItem { Label("Non-Hazerdous", systemImage: "globe.europe.africa") }
 	    
 	    FavoritesView()
 		.tabItem { Label("Favorites", systemImage: "star") }

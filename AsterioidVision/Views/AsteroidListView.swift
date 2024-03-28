@@ -31,44 +31,58 @@ struct AsteroidListView: View {
 		.listRowSeparator(.hidden)
 		
 		Section("\(title) Asteroids"){
-		    ForEach(displayedItems) { asteroid in
-			NavigationLink{
-			    CollectionDetailView(asteroid: asteroid)
-			} label: {
-			    HStack{
-				if favorites.contains(asteroid) {
-				    Image(systemName: "star.fill")
+		    
+		    if displayedItems.isEmpty && !viewModel.searchTerm.isEmpty {
+			ContentUnavailableView("No matches", systemImage: "eye.slash")
+			    .listRowSeparator(.hidden)
+		    } else {
+			ForEach(displayedItems) { asteroid in
+			    NavigationLink{
+				CollectionDetailView(asteroid: asteroid)
+			    } label: {
+				HStack{
+				    if favorites.contains(asteroid) {
+					Image(systemName: "star.fill")
+				    }
+				    Text(asteroid.name)
+				    Spacer()
+				    VStack(alignment: .trailing) {
+					Text(asteroidType == .hazard ? "Coming" : "Observed")
+					Text(approachDate(for: asteroid))
+				    }
 				}
-				Text(asteroid.name)
-				Spacer()
-				VStack(alignment: .trailing) {
-				    Text(asteroidType == .hazard ? "Coming" : "Observed")
-				    Text(approachDate(for: asteroid))
+				.onAppear {
+				    if asteroid == displayedItems.last{
+					viewModel.loadHazards()
+				    }
 				}
 			    }
-			    .onAppear {
-				if asteroid == displayedItems.last{
-				    viewModel.loadHazards()
+			    .swipeActions {
+				if favorites.contains(asteroid) == false {
+				    Button{
+					favorites.add(asteroid)
+				    } label: {
+					Image(systemName: "star")
+				    }
+				    .tint(.blue)
+				}
+				else {
+				    Button{
+					favorites.delete(asteroid)
+				    } label: {
+					Image(systemName: "star.slash")
+				    }
+				    .tint(.red)
 				}
 			    }
 			}
-			.swipeActions {
-			    if favorites.contains(asteroid) == false {
-				Button{
-				    favorites.add(asteroid)
-				} label: {
-				    Image(systemName: "star")
-				}
-				.tint(.blue)
+			if viewModel.isLoading {
+			    HStack{
+				Spacer()
+			        ProgressView()
+				Spacer()
 			    }
-			    else {
-				Button{
-				    favorites.delete(asteroid)
-				} label: {
-				    Image(systemName: "star.slash")
-				}
-				.tint(.red)
-			    }
+			    .listRowSeparator(.hidden)
 			}
 		    }
 		}
