@@ -33,7 +33,7 @@ struct AsteroidListView: View {
 		Section("\(title) Asteroids"){
 		    
 		    if displayedItems.isEmpty && !viewModel.searchTerm.isEmpty {
-			ContentUnavailableView("No matches", systemImage: "eye.slash")
+			ContentUnavailableView("No matches", image: "asteroid")
 			    .listRowSeparator(.hidden)
 		    } else {
 			ForEach(displayedItems) { asteroid in
@@ -109,7 +109,7 @@ extension AsteroidListView {
 	case .hazard:
 	    "Hazerdous"
 	case .nonHazard:
-	    "Non Hazerdous"
+	    "Non-Hazerdous"
 	}
     }
     
