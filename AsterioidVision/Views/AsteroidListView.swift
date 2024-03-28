@@ -107,9 +107,9 @@ extension AsteroidListView {
     var title: String {
 	switch asteroidType {
 	case .hazard:
-	    "Hazerdous"
+	    "Hazardous"
 	case .nonHazard:
-	    "Non-Hazerdous"
+	    "Non-Hazardous"
 	}
     }
     

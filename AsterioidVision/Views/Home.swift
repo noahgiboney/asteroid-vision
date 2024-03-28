@@ -16,10 +16,10 @@ struct Home: View {
 	TabView {
 	    
 	    AsteroidListView(asteroidType: .hazard)
-		.tabItem { Label("Hazerdous", systemImage: "hazardsign") }
+		.tabItem { Label("Hazardous", systemImage: "hazardsign") }
 	    
 	    AsteroidListView(asteroidType: .nonHazard)
-		.tabItem { Label("Non-Hazerdous", systemImage: "globe.europe.africa") }
+		.tabItem { Label("Non-Hazardous", systemImage: "globe.europe.africa") }
 	    
 	    FavoritesView()
 		.tabItem { Label("Favorites", systemImage: "star") }
