@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct AsterioidVisionApp: App {
+struct AsteroidVision: App {
     var body: some Scene {
         WindowGroup {
             Home()

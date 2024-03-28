@@ -50,7 +50,7 @@ struct AsteroidListView: View {
 				    Text(asteroid.name)
 				    Spacer()
 				    VStack(alignment: .trailing) {
-					Text(asteroidType == .hazard ? "Coming" : "Observed")
+					Text(asteroidType == .hazard ? "Next Approach" : "Last Observed")
 					Text(approachDate(for: asteroid))
 				    }
 				}
