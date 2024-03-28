@@ -11,6 +11,10 @@ import Observation
 @Observable
 class NetworkService {
     
+    enum APIError: Error {
+	case server, url, data
+    }
+    
     private let key = "dHOF8WnJtWYZrknUvPJZRddyB7J7q537zUXdwodN"
     
     private init() {}
@@ -49,9 +53,9 @@ class NetworkService {
 	}  catch APIError.url{
 	    errorMessage = "Invalid URL. Please try again later."
 	} catch APIError.server {
-	    errorMessage = "Service Unavaible. Please try again later."
+	    errorMessage = "There was an error with the server. Please try again later."
 	} catch APIError.data{
-	    errorMessage = "Invalid request. Please try again later."
+	    errorMessage = "There was an error with the data. Please try again later."
 	}
 	return nil
     }
