@@ -90,19 +90,19 @@ struct CollectionDetailView: View {
 		Text("Are you sure you want to remove \(asteroid.name) from your favorites?")
 	    }
 	    .toolbar {
-		ToolbarItem(placement: .topBarLeading){
-		    Button{
-			handleButtonPress()
-		    } label: {
-			Image(systemName: favorites.contains(asteroid) ? "star.fill" : "star")
-		    }
-		}
-		
 		ToolbarItem(placement: .topBarTrailing) {
 		    Button {
 			showingSheet.toggle()
 		    } label: {
 			Image(systemName: "ruler")
+		    }
+		}
+		
+		ToolbarItem(placement: .topBarTrailing){
+		    Button{
+			handleButtonPress()
+		    } label: {
+			Image(systemName: favorites.contains(asteroid) ? "star.fill" : "star")
 		    }
 		}
 	    }
