@@ -15,7 +15,7 @@ struct CloseApproachData: Codable {
     let missDistance: MissDistance
     let orbitingBody: String
     
-    static let example = CloseApproachData(closeApproachDate: "2015-09-08", closeApproachDateFull: "2015-Sep-08 20:28", epochDateCloseApproach: 1441744080000, relativeVelocity: RelativeVelocity.example, missDistance: MissDistance.example, orbitingBody: "Earth")
+    static let example = CloseApproachData(closeApproachDate: "2029-09-08", closeApproachDateFull: "2029-Sep-08 20:28", epochDateCloseApproach: 1441744080000, relativeVelocity: RelativeVelocity.example, missDistance: MissDistance.example, orbitingBody: "Earth")
     
     var date: String {
 	closeApproachDate.formattedDate

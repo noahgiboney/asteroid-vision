@@ -30,6 +30,7 @@
 		E2DE1D242BA68250009E5B85 /* AsterioidVisionApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE1D232BA68250009E5B85 /* AsterioidVisionApp.swift */; };
 		E2DE1D282BA68251009E5B85 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DE1D272BA68251009E5B85 /* Assets.xcassets */; };
 		E2DE1D2B2BA68251009E5B85 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2DE1D2A2BA68251009E5B85 /* Preview Assets.xcassets */; };
+		E2E1B4CF2BB4F8CE0000FEA4 /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E1B4CE2BB4F8CE0000FEA4 /* FilterView.swift */; };
 		E2E78D462BAE051500158AB0 /* MySceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E78D452BAE051500158AB0 /* MySceneView.swift */; };
 		E2EB47962BB4C5600089448C /* UnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2EB47952BB4C5600089448C /* UnitView.swift */; };
 /* End PBXBuildFile section */
@@ -59,6 +60,7 @@
 		E2DE1D232BA68250009E5B85 /* AsterioidVisionApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsterioidVisionApp.swift; sourceTree = "<group>"; };
 		E2DE1D272BA68251009E5B85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2DE1D2A2BA68251009E5B85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E2E1B4CE2BB4F8CE0000FEA4 /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
 		E2E78D452BAE051500158AB0 /* MySceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySceneView.swift; sourceTree = "<group>"; };
 		E2EB47952BB4C5600089448C /* UnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -163,9 +165,10 @@
 				E29380612BB09891002F596B /* AsteroidListView.swift */,
 				E29380692BB0EA75002F596B /* FavoritesView.swift */,
 				E29380652BB0D766002F596B /* CollectionDetailView.swift */,
-				E2EB47952BB4C5600089448C /* UnitView.swift */,
 				E2E78D452BAE051500158AB0 /* MySceneView.swift */,
 				E293806B2BB0EF77002F596B /* CloseApproachCard.swift */,
+				E2E1B4CE2BB4F8CE0000FEA4 /* FilterView.swift */,
+				E2EB47952BB4C5600089448C /* UnitView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -252,6 +255,7 @@
 				E23820772BAB77230095D4FC /* NetworkService.swift in Sources */,
 				E29380762BB13356002F596B /* Favorites.swift in Sources */,
 				E22700442BAFE17200844860 /* CloseApproachData.swift in Sources */,
+				E2E1B4CF2BB4F8CE0000FEA4 /* FilterView.swift in Sources */,
 				E29380622BB09891002F596B /* AsteroidListView.swift in Sources */,
 				E232048E2BAE7583003D9322 /* Home.swift in Sources */,
 				E2EB47962BB4C5600089448C /* UnitView.swift in Sources */,

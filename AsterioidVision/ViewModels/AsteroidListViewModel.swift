@@ -22,7 +22,13 @@ extension AsteroidListView {
 	
 	var searchTerm = ""
 	
+	var showingFilterSheet = false
+	
 	var isLoading = false
+	
+	var minVelocity = 0.0
+	var minDiameter = 0.0
+	var minMagnitude = 0.0
 	
 	private var page = 0
 	

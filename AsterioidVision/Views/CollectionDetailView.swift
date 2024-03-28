@@ -19,6 +19,17 @@ struct CollectionDetailView: View {
     
     var asteroid: NearEarthObject
     
+    var earthApproaches: [CloseApproachData] {
+	return asteroid.closeApproachData.filter { entry in
+	    let formatter = DateFormatter()
+	    formatter.dateFormat = "yyyy-MM-dd"
+	    if let date = formatter.date(from: entry.closeApproachDate){
+		return date > Date()
+	    }
+	    return false
+	}
+    }
+    
     var body: some View {
 	
 	NavigationStack {
@@ -42,16 +53,29 @@ struct CollectionDetailView: View {
 		.listRowSeparator(.hidden)
 		
 		Section{
+		    Text("Relative Velocity: \(objectVelocity)")
 		    
-		    Text(missDistance)
-		    
-		    Text(velocity)
-		    
-		    Text(objectDiameter)
+		    Text("Estimated Diameter:  \(objectDiameter)")
 		    
 		    Text("Absolute Magnitude: \(asteroid.absoluteMagnitudeH.removeZerosFromEnd()) M")
-		    
 		}
+		
+		Section("Close Aproaches") {
+		    ScrollView(.horizontal, showsIndicators: false){
+			
+			HStack {
+			    ForEach(earthApproaches, id: \.epochDateCloseApproach){ entry in
+				CloseApproachCard(entry: entry)
+				    .padding(.leading, 10)
+			    }
+			}
+			.scrollTargetLayout()
+		    }
+		    
+		    .scrollTargetBehavior(.viewAligned)
+		    .listRowInsets(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+		}
+		.listRowSeparator(.hidden)
 		
 		Section("Orbital Data") {
 		    
@@ -59,25 +83,6 @@ struct CollectionDetailView: View {
 		    
 		    Text("Last Observation: \(asteroid.orbitalData.lastObservationDate.formattedDate)")
 		}
-		
-		Section("Close Aproaches") {
-		    
-		    ScrollView(.horizontal, showsIndicators: false){
-			
-			HStack {
-			    ForEach(asteroid.closeApproachData, id: \.epochDateCloseApproach){ entry in
-				CloseApproachCard(entry: entry)
-				    .padding(.leading, 10)
-			    }
-			}
-			.scrollTargetLayout()
-		    }
-
-		    .scrollTargetBehavior(.viewAligned)
-		    .listRowInsets(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
-		    
-		}
-		.listRowSeparator(.hidden)
 	    }
 	    .listStyle(.plain)
 	    .navigationTitle(asteroid.name)
@@ -134,29 +139,13 @@ struct CollectionDetailView: View {
 
 extension CollectionDetailView {
     
-    var missDistance: String {
-	switch distanceSelection {
-	case .kilometers:
-	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.kilometers + " km"
-	case .miles:
-	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.miles + " miles"
-	case .lunar:
-	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.lunar + " lunar distances"
-	case .astronomical:
-	    "Miss Distance: " + asteroid.closeApproachData[0].missDistance.astronomical + " au"
-	}
-    }
-    
-    var velocity: String {
+    var objectVelocity: String {
 	switch speedSelection {
 	case .kmPerS:
-	    "Relative Velocity: " +
 	    asteroid.closeApproachData[0].relativeVelocity.kilometersPerSecond.beforeDecimal + " km/s"
 	case .kmPerH:
-	    "Relative Velocity: " +
 	    asteroid.closeApproachData[0].relativeVelocity.kilometersPerHour.beforeDecimal + " km/hr"
 	case .mph:
-	    "Relative Velocity: " +
 	    asteroid.closeApproachData[0].relativeVelocity.milesPerHour.beforeDecimal + " mph"
 	}
     }
@@ -164,16 +153,12 @@ extension CollectionDetailView {
     var objectDiameter: String {
 	switch diameterSelection {
 	case .kilometers:
-	    "Estimated Diameter: " +
 	    "\(asteroid.estimatedDiameter.kilometers.diameter)" + " km"
 	case .meters:
-	    "Estimated Diameter: " +
 	    "\(asteroid.estimatedDiameter.meters.diameter)" + " m"
 	case .miles:
-	    "Estimated Diameter: " +
 	    "\(asteroid.estimatedDiameter.miles.diameter)" + " miles"
 	case .feet:
-	    "Estimated Diameter: " +
 	    "\(asteroid.estimatedDiameter.feet.diameter)" + " ft"
 	}
     }

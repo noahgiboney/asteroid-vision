@@ -22,28 +22,31 @@ struct UnitView: View {
 	NavigationStack{
 	    Form {
 		
-		Picker(selection: $diameter) {
-		    ForEach(Diameter.allCases, id: \.self) { unitCase in
-			Text(unitCase.rawValue.capitalized).tag(unitCase)
-		    }
-		} label: {
-		    Label("Estimated Diameter", systemImage: "ruler")
-		}
-		
-		Picker(selection: $distance) {
-		    ForEach(Distance.allCases, id: \.self) { unitCase in
-			Text(unitCase.rawValue.capitalized).tag(unitCase)
-		    }
-		} label: {
-		    Label("Miss Distance", systemImage: "ruler")
-		}
-		
-		Picker(selection: $distance) {
+		Picker(selection: $speed) {
 		    Text("km/s").tag(Speed.kmPerS)
 		    Text("km/hour").tag(Speed.kmPerH)
 		    Text("mph").tag(Speed.mph)
 		} label: {
 		    Label("Relative Velocity", systemImage: "gauge.open.with.lines.needle.33percent")
+		}
+		
+		Picker(selection: $diameter) {
+			Text("Kilometers").tag(Diameter.kilometers)
+		    Text("Meters").tag(Diameter.meters)
+		    Text("Miles").tag(Diameter.miles)
+		    Text("Feet").tag(Diameter.feet)
+
+		} label: {
+		    Label("Estimated Diameter", systemImage: "ruler")
+		}
+		
+		Picker(selection: $distance) {
+		    	Text("Kilometers").tag(Distance.kilometers)
+			Text("Miles").tag(Distance.miles)
+			Text("Lunar").tag(Distance.lunar)
+			Text("Astronomical").tag(Distance.astronomical)
+		    } label: {
+		    Label("Miss Distance", systemImage: "ruler")
 		}
 	    }
 	    .navigationTitle("Unit Selection")
@@ -67,7 +70,7 @@ struct UnitView: View {
 		    Button{
 			dismiss()
 		    } label: {
-			Image(systemName: "x.circle.fill")
+			Image(systemName: "xmark.circle.fill")
 		    }
 		}
 	    }

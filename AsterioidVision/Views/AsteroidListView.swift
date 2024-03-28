@@ -9,7 +9,11 @@ import SwiftUI
 
 struct AsteroidListView: View {
     
+    @AppStorage("distance") var distanceSelection: Distance = .miles
+    @AppStorage("speed") var speedSelection: Speed = .kmPerS
+    @AppStorage("diameter") var diameterSelection: Diameter = .kilometers
     @Environment(Favorites.self) var favorites
+    
     @State private var viewModel = ViewModel()
     @State private var date = Date()
     
@@ -31,7 +35,7 @@ struct AsteroidListView: View {
 		
 		Section("\(title) Asteroids"){
 		    
-		    if displayedItems.isEmpty && !viewModel.searchTerm.isEmpty {
+		    if displayedItems.isEmpty && !viewModel.isLoading{
 			ContentUnavailableView("No matches", image: "asteroid")
 			    .listRowSeparator(.hidden)
 		    } else {
@@ -92,6 +96,20 @@ struct AsteroidListView: View {
 	    .refreshable {
 		viewModel.handleRefresh()
 	    }
+	    .toolbar {
+		Button {
+		    viewModel.showingFilterSheet.toggle()
+		} label: {
+		    Image(systemName: "line.3.horizontal.decrease.circle")
+		}
+	    }
+	    .sheet(isPresented: $viewModel.showingFilterSheet) {
+		FilterView(minVelocity: $viewModel.minVelocity, minDiameter: $viewModel.minDiameter, minMagnitude: $viewModel.minMagnitude)
+		    .presentationDetents([.medium])
+	    }
+	    .onAppear {
+		print(viewModel.minVelocity)
+	    }
 	}
     }
 }
@@ -122,7 +140,7 @@ extension AsteroidListView {
     }
     
     var displayedItems: [NearEarthObject] {
-	let list: [NearEarthObject]
+	var list: [NearEarthObject]
 	
 	switch asteroidType {
 	case .hazard:
@@ -134,6 +152,10 @@ extension AsteroidListView {
 		!asteroid.isPotentiallyHazardousAsteroid
 	    })
 	}
+	
+	list = filterDiameter(list)
+	list = filterVelocity(list)
+	list = filterMagnitude(list)
 	
 	if viewModel.searchTerm == "" {
 	    return list
@@ -152,6 +174,53 @@ extension AsteroidListView {
 	}
 	else {
 	    return asteroid.orbitalData.lastObservationDate.formattedDate
+	}
+    }
+    
+    private func filterVelocity(_ list: [NearEarthObject]) -> [NearEarthObject] {
+	switch speedSelection {
+	case .mph:
+	    return list.filter { asteroid in
+		let double = Double(asteroid.closeApproachData[0].relativeVelocity.milesPerHour) ?? 0
+		return double >= viewModel.minVelocity
+	    }
+	case .kmPerS:
+	    return list.filter { asteroid in
+		let double = Double(asteroid.closeApproachData[0].relativeVelocity.kilometersPerSecond) ?? 0
+		return double >= viewModel.minVelocity
+	    }
+	case .kmPerH:
+	    return list.filter { asteroid in
+		let double = Double(asteroid.closeApproachData[0].relativeVelocity.kilometersPerHour) ?? 0
+		return double >= viewModel.minVelocity
+	    }
+	}
+    }
+    
+    private func filterDiameter(_ list: [NearEarthObject]) -> [NearEarthObject] {
+	switch diameterSelection {
+	case .feet:
+	    return list.filter { asteroid in
+		asteroid.estimatedDiameter.feet.averageDiameter >= viewModel.minDiameter
+	    }
+	case .meters:
+	    return list.filter { asteroid in
+		asteroid.estimatedDiameter.meters.averageDiameter >= viewModel.minDiameter
+	    }
+	case .kilometers:
+	    return list.filter { asteroid in
+		asteroid.estimatedDiameter.kilometers.averageDiameter >= viewModel.minDiameter
+	    }
+	case .miles:
+	    return list.filter { asteroid in
+		asteroid.estimatedDiameter.miles.averageDiameter >= viewModel.minDiameter
+	    }
+	}
+    }
+    
+    private func filterMagnitude(_ list: [NearEarthObject]) -> [NearEarthObject] {
+	return list.filter { asteroid in
+	    asteroid.absoluteMagnitudeH >= viewModel.minMagnitude
 	}
     }
 }

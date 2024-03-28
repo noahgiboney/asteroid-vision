@@ -48,13 +48,13 @@ extension CloseApproachCard {
     var missDistance: String {
 	switch distanceSelection {
 	case .kilometers:
-	    "Missed By: " + entry.missDistance.kilometers.beforeDecimal + " km"
+	    "Distace From Earth: " + entry.missDistance.kilometers.beforeDecimal + " km"
 	case .miles:
-	    "Missed By: " + entry.missDistance.miles.beforeDecimal + " miles"
+	    "Distace From Earth: " + entry.missDistance.miles.beforeDecimal + " miles"
 	case .lunar:
-	    "Missed By: " + entry.missDistance.lunar.beforeDecimal + " lunar distances"
+	    "Distace From Earth: " + entry.missDistance.lunar.beforeDecimal + " lunar distances"
 	case .astronomical:
-	    "Missed By: " + entry.missDistance.astronomical + " au"
+	    "Distace From Earth: " + entry.missDistance.astronomical + " au"
 	}
     }
     
