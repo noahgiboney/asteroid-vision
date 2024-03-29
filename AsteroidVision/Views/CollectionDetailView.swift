@@ -66,13 +66,12 @@ struct CollectionDetailView: View {
 			HStack {
 			    ForEach(earthApproaches, id: \.epochDateCloseApproach){ entry in
 				CloseApproachCard(entry: entry)
-				    .padding(.leading, 15)
 			    }
 			}
 			.scrollTargetLayout()
 		    }
-		    
 		    .scrollTargetBehavior(.viewAligned)
+		    .safeAreaPadding(.horizontal, 10)
 		    .listRowInsets(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
 		}
 		.listRowSeparator(.hidden)

@@ -26,14 +26,14 @@ struct AsteroidListView: View {
 	    List {
 		
 		VStack{
-		    MySceneView(model: planet, rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
+		    MySceneView(model: asteroidType == .hazard ? "pluto.usdz" : "earth.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
 			.frame(height: 150)
 			.scaleEffect(1.5)
 			.padding()
 		}
 		.listRowSeparator(.hidden)
 		
-		Section("\(title) Asteroids"){
+		Section("\(asteroidType == .hazard ? "Hazardous" : "Non-Hazardous") Asteroids"){
 		    
 		    if displayedItems.isEmpty && !viewModel.isLoading{
 			ContentUnavailableView("No matches", image: "asteroid")
@@ -90,7 +90,7 @@ struct AsteroidListView: View {
 		    }
 		}
 	    }
-	    .navigationTitle(title)
+	    .navigationTitle(asteroidType == .hazard ? "Hazardous" : "Non-Hazardous" )
 	    .listStyle(.plain)
 	    .searchable(text: $viewModel.searchTerm, prompt: "Search by name")
 	    .refreshable {
@@ -132,24 +132,6 @@ struct AsteroidListView: View {
 
 extension AsteroidListView {
     
-    var title: String {
-	switch asteroidType {
-	case .hazard:
-	    "Hazardous"
-	case .nonHazard:
-	    "Non-Hazardous"
-	}
-    }
-    
-    var planet: String {
-	switch asteroidType {
-	case .hazard:
-	    "venus.usdz"
-	case .nonHazard:
-	    "earth.usdz"
-	}
-    }
-    
     var displayedItems: [NearEarthObject] {
 	var list: [NearEarthObject]
 	
@@ -163,25 +145,24 @@ extension AsteroidListView {
 		!asteroid.isPotentiallyHazardousAsteroid
 	    })
 	}
+    
+	if viewModel.searchTerm != "" {
+	    list = list.filter { asteroid in
+		asteroid.name.localizedStandardContains(viewModel.searchTerm)
+	    }
+	}
 	
 	list = filterDiameter(list)
 	list = filterVelocity(list)
 	list = filterMagnitude(list)
 	
-	if viewModel.searchTerm == "" {
-	    return list
-	}
-	else {
-	    return list.filter { asteroid in
-		asteroid.name.localizedStandardContains(viewModel.searchTerm)
-	    }
-	}
+	return list
     }
     
     func approachDate(for asteroid: NearEarthObject) -> String {
 	
 	if asteroidType == .hazard {
-	    return asteroid.closestApproach ?? "NA"
+	    return asteroid.closestApproach?.formattedDate ?? "NA"
 	}
 	else {
 	    return asteroid.orbitalData.lastObservationDate.formattedDate

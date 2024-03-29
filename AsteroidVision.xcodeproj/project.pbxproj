@@ -23,7 +23,6 @@
 		E29380662BB0D766002F596B /* CollectionDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380652BB0D766002F596B /* CollectionDetailView.swift */; };
 		E293806A2BB0EA75002F596B /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380692BB0EA75002F596B /* FavoritesView.swift */; };
 		E293806C2BB0EF77002F596B /* CloseApproachCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E293806B2BB0EF77002F596B /* CloseApproachCard.swift */; };
-		E29380722BB119FB002F596B /* venus.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E29380712BB119FB002F596B /* venus.usdz */; };
 		E29380762BB13356002F596B /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E29380752BB13356002F596B /* Favorites.swift */; };
 		E2D863C22BAE01D000A4260D /* asteroid.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E2D863C12BAE01D000A4260D /* asteroid.usdz */; };
 		E2DE1D242BA68250009E5B85 /* AsteroidVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2DE1D232BA68250009E5B85 /* AsteroidVision.swift */; };
@@ -51,7 +50,6 @@
 		E29380652BB0D766002F596B /* CollectionDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionDetailView.swift; sourceTree = "<group>"; };
 		E29380692BB0EA75002F596B /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
 		E293806B2BB0EF77002F596B /* CloseApproachCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloseApproachCard.swift; sourceTree = "<group>"; };
-		E29380712BB119FB002F596B /* venus.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = venus.usdz; sourceTree = "<group>"; };
 		E29380752BB13356002F596B /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		E2D863C12BAE01D000A4260D /* asteroid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = asteroid.usdz; sourceTree = "<group>"; };
 		E2DE1D202BA68250009E5B85 /* AsteroidVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +95,6 @@
 				E29380632BB09EF5002F596B /* pluto.usdz */,
 				E2D863C12BAE01D000A4260D /* asteroid.usdz */,
 				E23204992BAE905C003D9322 /* earth.usdz */,
-				E29380712BB119FB002F596B /* venus.usdz */,
 			);
 			path = "3D-Objects";
 			sourceTree = "<group>";
@@ -228,7 +225,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E29380722BB119FB002F596B /* venus.usdz in Resources */,
 				E29380642BB09EF5002F596B /* pluto.usdz in Resources */,
 				E232049A2BAE905C003D9322 /* earth.usdz in Resources */,
 				E2D863C22BAE01D000A4260D /* asteroid.usdz in Resources */,
@@ -395,7 +391,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AsterioidVision/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AsteroidVision/Preview Content\"";
 				DEVELOPMENT_TEAM = 94GUNU2NWX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -424,7 +420,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"AsterioidVision/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"AsteroidVision/Preview Content\"";
 				DEVELOPMENT_TEAM = 94GUNU2NWX;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;

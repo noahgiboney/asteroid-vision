@@ -24,14 +24,19 @@ struct CloseApproachCard: View {
 		
 		Text(entry.date)
 		
-		Text("Epoch \(entry.epochDateCloseApproach)")
+		Text("\(entry.epochDateCloseApproach)")
 		    .font(.caption)
 	    }
 	    
 	    Text(velocity)
 	    
-	    Text("Distance from \(entry.orbitingBody): \(missDistance)")
+	    VStack(alignment: .leading){
+	        Text("Distance from \(entry.orbitingBody)")
+		    .font(.caption)
+		Text("\(missDistance)")
+	    }
 	}
+	.frame(width: 140)
 	.padding()
 	.background(Color.gray.opacity(0.3))
 	.clipShape(RoundedRectangle(cornerRadius: 10))

@@ -7,13 +7,17 @@
 
 import Foundation
 
-struct CloseApproachData: Codable {
+struct CloseApproachData: Codable, Equatable {
     let closeApproachDate: String
     let closeApproachDateFull: String
     let epochDateCloseApproach: Int
     let relativeVelocity: RelativeVelocity
     let missDistance: MissDistance
     let orbitingBody: String
+    
+    static func ==(lhs: CloseApproachData, rhs: CloseApproachData) -> Bool {
+	return lhs.epochDateCloseApproach == rhs.epochDateCloseApproach
+    }
     
     static let example = CloseApproachData(closeApproachDate: "2029-09-08", closeApproachDateFull: "2029-Sep-08 20:28", epochDateCloseApproach: 1441744080000, relativeVelocity: RelativeVelocity.example, missDistance: MissDistance.example, orbitingBody: "Earth")
     
