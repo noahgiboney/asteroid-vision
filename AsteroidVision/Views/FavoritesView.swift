@@ -63,7 +63,7 @@ struct FavoritesView: View {
 				
 				VStack(alignment: .trailing) {
 				    Text(item.isPotentiallyHazardousAsteroid ? "Coming" : "Seen")
-				    Text(item.isPotentiallyHazardousAsteroid ? item.closestApproach ?? "NA" : item.orbitalData.lastObservationDate )
+				    Text(item.isPotentiallyHazardousAsteroid ? item.closestApproach?.formattedDate ?? "NA" : item.orbitalData.lastObservationDate.formattedDate )
 				}
 			    }
 			}

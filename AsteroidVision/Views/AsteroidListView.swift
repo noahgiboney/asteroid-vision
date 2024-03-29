@@ -35,15 +35,6 @@ struct AsteroidListView: View {
 		
 		Section("\(asteroidType == .hazard ? "Hazardous" : "Non-Hazardous") Asteroids"){
 		    
-		    if viewModel.isLoading {
-			HStack{
-			    Spacer()
-			    ProgressView()
-			    Spacer()
-			}
-			.listRowSeparator(.hidden)
-		    }
-		    
 		    if displayedItems.isEmpty && !viewModel.isLoading{
 			ContentUnavailableView("No matches", image: "asteroid")
 			    .listRowSeparator(.hidden)
@@ -93,6 +84,14 @@ struct AsteroidListView: View {
 				    .tint(.red)
 				}
 			    }
+			}
+			if viewModel.isLoading {
+			    HStack{
+				Spacer()
+				ProgressView()
+				Spacer()
+			    }
+			    .listRowSeparator(.hidden)
 			}
 		    }
 		}
