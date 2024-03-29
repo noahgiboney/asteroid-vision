@@ -13,6 +13,7 @@ struct AsteroidListView: View {
     @AppStorage("distance") var distanceSelection: Distance = .miles
     @AppStorage("speed") var speedSelection: Speed = .kmPerS
     @AppStorage("diameter") var diameterSelection: Diameter = .kilometers
+    @AppStorage("favoriteCount") var favoritesCount: Int = 0
     @Environment(Favorites.self) var favorites
     @Environment(\.requestReview) var requestReview
     
@@ -63,12 +64,10 @@ struct AsteroidListView: View {
 			    .swipeActions {
 				if favorites.contains(asteroid) == false {
 				    Button{
-					if viewModel.favoritesCount == 2 {
+					if favoritesCount == 2 {
 					    requestAppStoreReview()
 					}
-					else if viewModel.favoritesCount < 3{
-					    viewModel.favoritesCount += 1
-					}
+					favoritesCount += 1
 					favorites.add(asteroid)
 				    } label: {
 					Image(systemName: "star")
