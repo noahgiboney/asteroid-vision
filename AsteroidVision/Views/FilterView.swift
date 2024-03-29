@@ -22,10 +22,8 @@ struct FilterView: View {
     @State private var showingUnitSheet = false
     
     var body: some View {
-	
 	NavigationStack {
 	    Form {
-		
 		Section("Minimum Relative Velocity"){
 		    VStack{
 			Text("\(minVelocity.rounded().removeZerosFromEnd()) " + velocityUnit)
@@ -65,6 +63,7 @@ struct FilterView: View {
 	    .navigationTitle("Filter")
 	    .navigationBarTitleDisplayMode(.inline)
 	    .toolbar {
+		
 		ToolbarItem(placement: .topBarLeading) {
 		    Button{
 			dismiss()

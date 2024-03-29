@@ -31,8 +31,10 @@ struct CloseApproachCard: View {
 	    Text(velocity)
 	    
 	    VStack(alignment: .leading){
+		
 	        Text("Distance from \(entry.orbitingBody)")
 		    .font(.caption)
+		
 		Text("\(missDistance)")
 	    }
 	}

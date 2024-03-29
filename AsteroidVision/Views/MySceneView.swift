@@ -16,7 +16,6 @@ struct MySceneView: UIViewRepresentable {
     var rotationZ: Float
     var allowsCameraControl: Bool
     
-    
     typealias UIViewType = SCNView
     
     func updateUIView(_ uiView: UIViewType, context: Context) {}

@@ -22,9 +22,7 @@ struct AsteroidListView: View {
     var body: some View {
 	
 	NavigationStack {
-	    
 	    List {
-		
 		VStack{
 		    MySceneView(model: asteroidType == .hazard ? "pluto.usdz" : "earth.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
 			.frame(height: 150)

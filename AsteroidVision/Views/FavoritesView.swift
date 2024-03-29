@@ -17,6 +17,7 @@ struct FavoritesView: View {
     @State private var showingType: FavoriteType = .all
     
     var displayList: [NearEarthObject] {
+	
 	switch showingType {
 	case .all:
 	    favorites.list
@@ -32,6 +33,7 @@ struct FavoritesView: View {
     }
     
     var body: some View {
+	
 	NavigationStack {
 	    List{
 		Picker("Favorites", selection: $showingType) {
@@ -40,7 +42,6 @@ struct FavoritesView: View {
 		    Text("Non-Hazard").tag(FavoriteType.nonHazard)
 		}
 		.pickerStyle(.segmented)
-		
 		
 		if favorites.list.isEmpty {
 		    ContentUnavailableView("You have no favorites", image: "asteroid")
@@ -57,7 +58,9 @@ struct FavoritesView: View {
 					.font(.caption)
 					.foregroundStyle(item.isPotentiallyHazardousAsteroid ? .red : .black)
 				}
+				
 				Spacer()
+				
 				VStack(alignment: .trailing) {
 				    Text(item.isPotentiallyHazardousAsteroid ? "Coming" : "Seen")
 				    Text(item.isPotentiallyHazardousAsteroid ? item.closestApproach ?? "NA" : item.orbitalData.lastObservationDate )

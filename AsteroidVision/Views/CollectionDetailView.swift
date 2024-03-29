@@ -33,9 +33,7 @@ struct CollectionDetailView: View {
     var body: some View {
 	
 	NavigationStack {
-	    
 	    List {
-		
 		VStack{
 		    MySceneView(model: "asteroid.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
 			.frame(height: 100)
@@ -44,7 +42,9 @@ struct CollectionDetailView: View {
 		.listRowSeparator(.hidden)
 		
 		HStack(alignment: .center){
+		    
 		    Spacer()
+		    
 		    Text("\(asteroid.isPotentiallyHazardousAsteroid ? "HAZARDOUS" : "Non-Hazardous")")
 			.font(.headline)
 			.foregroundStyle(asteroid.isPotentiallyHazardousAsteroid ? .red : .black)
@@ -53,6 +53,7 @@ struct CollectionDetailView: View {
 		.listRowSeparator(.hidden)
 		
 		Section{
+
 		    Text("Relative Velocity: \(objectVelocity)")
 		    
 		    Text("Estimated Diameter:  \(objectDiameter)")
@@ -62,7 +63,6 @@ struct CollectionDetailView: View {
 		
 		Section("Future Approaches") {
 		    ScrollView(.horizontal, showsIndicators: false){
-			
 			HStack {
 			    ForEach(earthApproaches, id: \.epochDateCloseApproach){ entry in
 				CloseApproachCard(entry: entry)
