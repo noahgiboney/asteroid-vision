@@ -1,6 +1,6 @@
 //
 //  MySceneView.swift
-//  AsterioidVision
+//  AsteroidVision
 //
 //  Created by Noah Giboney on 3/22/24.
 //

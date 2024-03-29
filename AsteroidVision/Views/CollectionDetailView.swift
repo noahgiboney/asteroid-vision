@@ -1,6 +1,6 @@
 //
 //  CollectionDetailView.swift
-//  AsterioidVision
+//  AsteroidVision
 //
 //  Created by Noah Giboney on 3/24/24.
 //

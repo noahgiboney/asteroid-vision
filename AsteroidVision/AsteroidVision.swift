@@ -1,6 +1,6 @@
 //
-//  AsterioidVisionApp.swift
-//  AsterioidVision
+//  AsteroidVisionApp.swift
+//  AsteroidVision
 //
 //  Created by Noah Giboney on 3/16/24.
 //
