@@ -54,7 +54,7 @@
 		E29380712BB119FB002F596B /* venus.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = venus.usdz; sourceTree = "<group>"; };
 		E29380752BB13356002F596B /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 		E2D863C12BAE01D000A4260D /* asteroid.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = asteroid.usdz; sourceTree = "<group>"; };
-		E2DE1D202BA68250009E5B85 /* AsterioidVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsterioidVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2DE1D202BA68250009E5B85 /* AsteroidVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AsteroidVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2DE1D232BA68250009E5B85 /* AsteroidVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidVision.swift; sourceTree = "<group>"; };
 		E2DE1D272BA68251009E5B85 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2DE1D2A2BA68251009E5B85 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		E2DE1D172BA68250009E5B85 = {
 			isa = PBXGroup;
 			children = (
-				E2DE1D222BA68250009E5B85 /* AsterioidVision */,
+				E2DE1D222BA68250009E5B85 /* AsteroidVision */,
 				E2DE1D212BA68250009E5B85 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -113,12 +113,12 @@
 		E2DE1D212BA68250009E5B85 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E2DE1D202BA68250009E5B85 /* AsterioidVision.app */,
+				E2DE1D202BA68250009E5B85 /* AsteroidVision.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E2DE1D222BA68250009E5B85 /* AsterioidVision */ = {
+		E2DE1D222BA68250009E5B85 /* AsteroidVision */ = {
 			isa = PBXGroup;
 			children = (
 				E2DE1D232BA68250009E5B85 /* AsteroidVision.swift */,
@@ -131,7 +131,7 @@
 				E2DE1D272BA68251009E5B85 /* Assets.xcassets */,
 				E2DE1D292BA68251009E5B85 /* Preview Content */,
 			);
-			path = AsterioidVision;
+			path = AsteroidVision;
 			sourceTree = "<group>";
 		};
 		E2DE1D292BA68251009E5B85 /* Preview Content */ = {
@@ -173,9 +173,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E2DE1D1F2BA68250009E5B85 /* AsterioidVision */ = {
+		E2DE1D1F2BA68250009E5B85 /* AsteroidVision */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E2DE1D2E2BA68251009E5B85 /* Build configuration list for PBXNativeTarget "AsterioidVision" */;
+			buildConfigurationList = E2DE1D2E2BA68251009E5B85 /* Build configuration list for PBXNativeTarget "AsteroidVision" */;
 			buildPhases = (
 				E2DE1D1C2BA68250009E5B85 /* Sources */,
 				E2DE1D1D2BA68250009E5B85 /* Frameworks */,
@@ -185,9 +185,9 @@
 			);
 			dependencies = (
 			);
-			name = AsterioidVision;
+			name = AsteroidVision;
 			productName = AsterioidVision;
-			productReference = E2DE1D202BA68250009E5B85 /* AsterioidVision.app */;
+			productReference = E2DE1D202BA68250009E5B85 /* AsteroidVision.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -205,7 +205,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E2DE1D1B2BA68250009E5B85 /* Build configuration list for PBXProject "AsterioidVision" */;
+			buildConfigurationList = E2DE1D1B2BA68250009E5B85 /* Build configuration list for PBXProject "AsteroidVision" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -218,7 +218,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E2DE1D1F2BA68250009E5B85 /* AsterioidVision */,
+				E2DE1D1F2BA68250009E5B85 /* AsteroidVision */,
 			);
 		};
 /* End PBXProject section */
@@ -449,7 +449,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E2DE1D1B2BA68250009E5B85 /* Build configuration list for PBXProject "AsterioidVision" */ = {
+		E2DE1D1B2BA68250009E5B85 /* Build configuration list for PBXProject "AsteroidVision" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2DE1D2C2BA68251009E5B85 /* Debug */,
@@ -458,7 +458,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2DE1D2E2BA68251009E5B85 /* Build configuration list for PBXNativeTarget "AsterioidVision" */ = {
+		E2DE1D2E2BA68251009E5B85 /* Build configuration list for PBXNativeTarget "AsteroidVision" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2DE1D2F2BA68251009E5B85 /* Debug */,
