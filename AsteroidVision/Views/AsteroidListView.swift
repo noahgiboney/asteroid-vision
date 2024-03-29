@@ -5,6 +5,7 @@
 //  Created by Noah Giboney on 3/24/24.
 //
 
+import StoreKit
 import SwiftUI
 
 struct AsteroidListView: View {
@@ -13,6 +14,7 @@ struct AsteroidListView: View {
     @AppStorage("speed") var speedSelection: Speed = .kmPerS
     @AppStorage("diameter") var diameterSelection: Diameter = .kilometers
     @Environment(Favorites.self) var favorites
+    @Environment(\.requestReview) var requestReview
     
     @State private var viewModel = ViewModel()
     @State private var showingErrorAlert = false
@@ -23,7 +25,7 @@ struct AsteroidListView: View {
 	
 	NavigationStack {
 	    List {
-		VStack{
+		VStack {
 		    MySceneView(model: asteroidType == .hazard ? "pluto.usdz" : "earth.usdz", rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
 			.frame(height: 150)
 			.scaleEffect(1.5)
@@ -32,6 +34,15 @@ struct AsteroidListView: View {
 		.listRowSeparator(.hidden)
 		
 		Section("\(asteroidType == .hazard ? "Hazardous" : "Non-Hazardous") Asteroids"){
+		    
+		    if viewModel.isLoading {
+			HStack{
+			    Spacer()
+			    ProgressView()
+			    Spacer()
+			}
+			.listRowSeparator(.hidden)
+		    }
 		    
 		    if displayedItems.isEmpty && !viewModel.isLoading{
 			ContentUnavailableView("No matches", image: "asteroid")
@@ -61,6 +72,12 @@ struct AsteroidListView: View {
 			    .swipeActions {
 				if favorites.contains(asteroid) == false {
 				    Button{
+					if viewModel.favoritesCount == 2 {
+					    requestAppStoreReview()
+					}
+					else if viewModel.favoritesCount < 3{
+					    viewModel.favoritesCount += 1
+					}
 					favorites.add(asteroid)
 				    } label: {
 					Image(systemName: "star")
@@ -76,14 +93,6 @@ struct AsteroidListView: View {
 				    .tint(.red)
 				}
 			    }
-			}
-			if viewModel.isLoading {
-			    HStack{
-				Spacer()
-			        ProgressView()
-				Spacer()
-			    }
-			    .listRowSeparator(.hidden)
 			}
 		    }
 		}
@@ -106,7 +115,6 @@ struct AsteroidListView: View {
 	    }
 	    .sheet(isPresented: $viewModel.showingFilterSheet) {
 		FilterView(minVelocity: $viewModel.minVelocity, minDiameter: $viewModel.minDiameter, minMagnitude: $viewModel.minMagnitude)
-		    .presentationDetents([.medium])
 	    }
 	    .onChange(of: NetworkService.shared.errorMessage) {
 		if NetworkService.shared.errorMessage != nil {
@@ -120,6 +128,11 @@ struct AsteroidListView: View {
 		}
 	    }
 	}
+    }
+    
+    @MainActor
+    func requestAppStoreReview(){
+	requestReview()
     }
 }
 

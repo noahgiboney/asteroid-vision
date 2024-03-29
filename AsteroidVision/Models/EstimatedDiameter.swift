@@ -24,11 +24,11 @@ struct Kilometers: Codable {
     static let example = Kilometers(estimatedDiameterMin: 217.0475943071, estimatedDiameterMax: 485.3331752235)
     
     var averageDiameter: Double {
-	return ((estimatedDiameterMax + estimatedDiameterMin) / 2).rounded()
+	return ((estimatedDiameterMax + estimatedDiameterMin) / 2)
     }
     
     var diameter: String {
-	return ((estimatedDiameterMax + estimatedDiameterMin) / 2).rounded().removeZerosFromEnd()
+	return ((estimatedDiameterMax + estimatedDiameterMin) / 2).roundedDecimal()
     }
 }
 
@@ -43,7 +43,7 @@ struct Meters: Codable {
     }
     
     var diameter: String {
-	return ((estimatedDiameterMax + estimatedDiameterMin) / 2).rounded().removeZerosFromEnd()
+	return ((estimatedDiameterMax + estimatedDiameterMin) / 2).rounded().roundedDecimal()
     }
 }
 
@@ -58,7 +58,7 @@ struct Miles: Codable {
     }
     
     var diameter: String {
-	return ((estimatedDiameterMax + estimatedDiameterMin) / 2).rounded().removeZerosFromEnd()
+	return ((estimatedDiameterMax + estimatedDiameterMin) / 2).roundedDecimal()
     }
 }
 

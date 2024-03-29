@@ -58,9 +58,9 @@ extension CloseApproachCard {
 	case .miles:
 	    entry.missDistance.miles.beforeDecimal + " miles"
 	case .lunar:
-	    entry.missDistance.lunar.beforeDecimal + " lunar distances"
+	    entry.missDistance.lunar.roundedDecimal() + " LD"
 	case .astronomical:
-	    entry.missDistance.astronomical + " au"
+	    entry.missDistance.astronomical.roundedDecimal() + " au"
 	}
     }
     

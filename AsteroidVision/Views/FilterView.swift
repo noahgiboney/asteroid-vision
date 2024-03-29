@@ -82,7 +82,7 @@ struct FilterView: View {
 	    }
 	    .sheet(isPresented: $showingUnitSheet) {
 		UnitView()
-		    .presentationDetents([.fraction(0.35)])
+		    .presentationDetents([.medium])
 	    }
 	}
     }

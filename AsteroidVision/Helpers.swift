@@ -8,21 +8,6 @@
 import Foundation
 import SwiftUI
 
-extension Date {
-    
-    var todayDate: String {
-	let formatter = DateFormatter()
-	formatter.dateFormat = "yyyy-MM-dd"
-	return formatter.string(from: self)
-    }
-    
-    var shortDate: String {
-	let formatter = DateFormatter()
-	formatter.dateFormat = "M/d"
-	return formatter.string(from: self)
-    }
-}
-
 extension String {
     
     var formattedDate: String {
@@ -42,6 +27,17 @@ extension String {
     var beforeDecimal: String {
 	return self.components(separatedBy: ".").first ?? self
     }
+    
+    func roundedDecimal() -> String {
+	    let formatter = NumberFormatter()
+	    formatter.minimumFractionDigits = 2
+	    formatter.maximumFractionDigits = 2
+	    
+	    guard let numberValue = Double(self) else { return "" }
+	    let number = NSNumber(value: numberValue)
+	    
+	    return formatter.string(from: number) ?? ""
+    }
 }
 
 extension View {
@@ -54,11 +50,20 @@ extension View {
 }
 
 extension Double {
+    
+    func roundedDecimal() -> String {
+	let formatter = NumberFormatter()
+	let number = NSNumber(value: self)
+	formatter.minimumFractionDigits = 2
+	formatter.maximumFractionDigits = 2
+	return String(formatter.string(from: number) ?? "")
+    }
+    
     func removeZerosFromEnd() -> String {
 	let formatter = NumberFormatter()
 	let number = NSNumber(value: self)
 	formatter.minimumFractionDigits = 0
-	formatter.maximumFractionDigits = 16 
+	formatter.maximumFractionDigits = 16
 	return String(formatter.string(from: number) ?? "")
     }
 }

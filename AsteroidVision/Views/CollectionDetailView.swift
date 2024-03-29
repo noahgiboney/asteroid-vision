@@ -112,7 +112,7 @@ struct CollectionDetailView: View {
 	    }
 	    .sheet(isPresented: $showingSheet) {
 		UnitView()
-		    .presentationDetents([.fraction(0.35)])
+		    .presentationDetents([.medium])
 	    }
 	}
     }
