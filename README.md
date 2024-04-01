@@ -1,6 +1,6 @@
 # Asteroid Vision
 
-Asteroid Vision is an iOS app built with SwiftUI and the NEO Restful API from NASA. It unveils asteiods appraoching earth and displays data from there
+Asteroid Vision is an iOS app built with SwiftUI and the NEO Restful API from NASA. It unviels hazardous asteroids approaching earth.
 
 Available on the [App Store](https://apps.apple.com/us/app/asteroid-vision/id6480248381).
 
