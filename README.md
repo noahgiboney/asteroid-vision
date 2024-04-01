@@ -4,7 +4,7 @@ Asteroid Vision is an iOS app built with SwiftUI and the NEO Restful API from NA
 
 Available on the [App Store](https://apps.apple.com/us/app/asteroid-vision/id6480248381).
 
-![app logo](https://github.com/noahgiboney/cryptid-coordinates/blob/main/AsteroidVision/Assets.xcassets/AppIcon.appiconset/icon-83_5%402x.png)
+![app logo](https://github.com/noahgiboney/asteroid-vision/blob/main/AsteroidVision/Assets.xcassets/AppIcon.appiconset/icon-83_5%402x.png)
 
 ## Features
 
