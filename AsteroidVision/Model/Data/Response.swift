@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Response: Codable {
+struct Response: Codable, Hashable {
     var nearEarthObjects: [NearEarthObject]
 }

@@ -1,5 +1,5 @@
 //
-//  MySceneView.swift
+//  SceneView.swift
 //  AsteroidVision
 //
 //  Created by Noah Giboney on 3/22/24.
@@ -8,9 +8,8 @@
 import SceneKit
 import SwiftUI
 
-struct MySceneView: UIViewRepresentable {
-    
-    var model: String
+struct SceneView: UIViewRepresentable {
+    var model: SceneModel
     var rotationX: Float
     var rotationY: Float
     var rotationZ: Float
@@ -26,7 +25,7 @@ struct MySceneView: UIViewRepresentable {
 	view.allowsCameraControl = allowsCameraControl
 	view.autoenablesDefaultLighting = true
 	
-	if let scene = SCNScene(named: model) {
+        if let scene = SCNScene(named: model.resource) {
 	    view.scene = scene
 	    
 	    let asteroidNode = scene.rootNode.childNodes.first { $0.name == "asteroidNodeName" } ?? scene.rootNode
@@ -44,7 +43,7 @@ struct MySceneView: UIViewRepresentable {
 }
 
 #Preview {
-    MySceneView(model: "asteroidmodel.usdz", rotationX: 0, rotationY: 0, rotationZ: 0, allowsCameraControl: true)
+    SceneView(model: .earth, rotationX: 0, rotationY: 0, rotationZ: 0, allowsCameraControl: true)
 	.preferredColorScheme(.dark)
 }
 

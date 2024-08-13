@@ -11,7 +11,7 @@ import SwiftUI
 struct AsteroidVision: App {
     var body: some Scene {
         WindowGroup {
-            Home()
+            ContentView()
         }
     }
 }
