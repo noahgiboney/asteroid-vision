@@ -1,6 +1,6 @@
 # Asteroid Vision
 
-![App Logo(https://github.com/user-attachments/assets/65ef3b61-9fd1-4a05-ab98-32172d02d6ed)
+![App Logo](https://github.com/user-attachments/assets/65ef3b61-9fd1-4a05-ab98-32172d02d6ed)
 
 Available on the [App Store](https://apps.apple.com/us/app/asteroid-vision/id6480248381).
 
