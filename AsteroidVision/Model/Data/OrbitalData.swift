@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OrbitalData: Codable, Hashable {
+struct OrbitalData: DataModel {
     let orbitId: String
     let orbitDeterminationDate: String
     let firstObservationDate: String

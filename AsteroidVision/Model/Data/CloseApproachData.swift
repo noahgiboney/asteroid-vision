@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CloseApproachData: Codable, Equatable, Hashable {
+struct CloseApproachData: DataModel, Equatable {
     let closeApproachDate: String
     let closeApproachDateFull: String
     let epochDateCloseApproach: Int
@@ -64,7 +64,7 @@ struct CloseApproachData: Codable, Equatable, Hashable {
     }
 }
 
-struct RelativeVelocity: Codable, Hashable {
+struct RelativeVelocity: DataModel {
     let kilometersPerSecond: String
     let kilometersPerHour: String
     let milesPerHour: String
@@ -76,7 +76,7 @@ struct RelativeVelocity: Codable, Hashable {
     }
 }
 
-struct MissDistance: Codable, Hashable {
+struct MissDistance: DataModel {
     let astronomical: String
     let lunar: String
     let kilometers: String

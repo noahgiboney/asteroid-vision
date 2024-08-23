@@ -7,21 +7,20 @@
 
 import Foundation
 
-struct NearEarthObject: Codable, Identifiable, Equatable, Hashable {
+struct NearEarthObject: DataModel, Identifiable, Equatable {
     let id: String
-    var neoReferenceId: String
+    let neoReferenceId: String
     let name: String
     let absoluteMagnitudeH: Double
     let estimatedDiameter: EstimatedDiameter
     let isPotentiallyHazardousAsteroid: Bool
     let closeApproachData: [CloseApproachData]
-    let orbitalData: OrbitalData
     
     static func ==(lhs: NearEarthObject, rhs: NearEarthObject) -> Bool {
         lhs.id == rhs.id
     }
     
-    static let example = NearEarthObject(id: "666", neoReferenceId: "84434", name: "234234 (2019 Junipt)", absoluteMagnitudeH: 44.1, estimatedDiameter: EstimatedDiameter.example, isPotentiallyHazardousAsteroid: false, closeApproachData: Array<CloseApproachData>.init(repeating: CloseApproachData.example, count: 10), orbitalData: OrbitalData.example)
+    static let example = NearEarthObject(id: "2465633", neoReferenceId: "2465633", name: "234234 (2019 Junipt)", absoluteMagnitudeH: 44.1, estimatedDiameter: EstimatedDiameter.example, isPotentiallyHazardousAsteroid: false, closeApproachData: Array<CloseApproachData>.init(repeating: CloseApproachData.example, count: 10))
 }
 
 extension NearEarthObject {
