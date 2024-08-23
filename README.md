@@ -1,15 +1,16 @@
 # Asteroid Vision
 
-Asteroid Vision is an iOS app built with SwiftUI and the NEO Restful API from NASA. It unveils hazardous asteroids approaching earth.
+![App Logo](https://github.com/user-attachments/assets/65ef3b61-9fd1-4a05-ab98-32172d02d6ed)
 
 Available on the [App Store](https://apps.apple.com/us/app/asteroid-vision/id6480248381).
 
-![app logo](https://github.com/noahgiboney/asteroid-vision/blob/main/AsteroidVision/Assets.xcassets/AppIcon.appiconset/icon-83_5%402x.png)
+iOS app i built with SwiftUI, SceneKit, NASA REST API. Browse hazardous asteroids approaching earth.
 
 ## Features
 
-- Explore Both Hazardous and Non-Hazardous Asteroids: Discover a wide array of asteroids within our galaxy, ranging from those that pose a potential threat to Earth to those that pass by harmlessly.
+- Browse a collection of asteroids appraoching earth that are marked as hazardous by NASA.
 
-- In-Depth Asteroid Data: Access detailed information on each asteroid, including its velocity, how far it is from Earth, and its size, offering a comprehensive look at these celestial bodies.
+- Access detailed information on each asteroid, including its velocity, how far it is from Earth, and its size, offering a comprehensive look at these celestial bodies.
 
-- Build a Personalized Favorites List: Keep track of the asteroids that intrigue you the most by adding them to your own curated list of favorite asteroids, making it easy to return to them at any time.
+- eep track of the asteroids that intrigue you the most by adding them to your own curated list of favorite asteroids, making it easy to return to them at any time.
+
