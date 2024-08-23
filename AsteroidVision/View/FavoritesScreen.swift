@@ -7,71 +7,46 @@
 
 import SwiftUI
 
-enum FavoritesState {
-    case loaded, empty, loading
-}
-
 struct FavoritesScreen: View {
-    @Environment(AsteroidStore.self) var store
+    @EnvironmentObject var viewModel: ViewModel
     @Environment(Favorites.self) var favorites
-    @State private var state: FavoritesState = .loading
     @State private var favoriteAsteroids: [NearEarthObject] = []
+    @State private var isLoading = true
     
     var body: some View {
         NavigationStack {
             Group {
-                switch state {
-                case .loaded:
-                    List {
-                        ForEach(favoriteAsteroids) { asteroid in
-                            NavigationLink {
-                                AsteroidDetailScreen(asteroid: asteroid)
-                            } label: {
-                                Text(asteroid.name)
+                if isLoading {
+                    ProgressView()
+                } else {
+                    if favoriteAsteroids.isEmpty {
+                        ContentUnavailableView("No favorites yet", image: "asteroid")
+                    } else {
+                        List {
+                            ForEach(favoriteAsteroids) { asteroid in
+                                NavigationLink {
+                                    AsteroidDetailScreen(asteroidId: asteroid.id, asteroid: asteroid)
+                                } label: {
+                                    Text(asteroid.name)
+                                }
+                            }
+                            .onDelete { indexSet in
+                                delete(at: indexSet)
                             }
                         }
-                        .onDelete { indexSet in
-                            delete(at: indexSet)
-                        }
                     }
-                case .empty:
-                    ContentUnavailableView("No favorites yet", image: "asteroid")
-                case .loading:
-                    ProgressView()
                 }
             }
             .navigationTitle("Favorites")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbarRole(.editor)
             .toolbar {
                 EditButton()
             }
-            .onChange(of: favoriteAsteroids) { _, _ in
-                if favoriteAsteroids.isEmpty {
-                    state = .empty
-                }
+            .task {
+                favoriteAsteroids = await viewModel.fetchFavorites(favorites: Array(favorites.favorites))
+                isLoading = false
             }
-            .task { try? await fetchFavorites() }
-        }
-    }
-    
-    func fetchFavorites() async throws {
-        guard state != .loaded else { return }
-        
-        try await withThrowingTaskGroup(of: NearEarthObject?.self) { taskGroup in
-            for id in Array(favorites.favorites) {
-                taskGroup.addTask { try? await store.fetchAsteroid(id) }
-            }
-            
-            for try await asteroid in taskGroup {
-                if let asteroid = asteroid {
-                    favoriteAsteroids.append(asteroid)
-                }
-            }
-        }
-        if favoriteAsteroids.isEmpty {
-            state = .empty
-        } else {
-            state = .loaded
         }
     }
     
@@ -83,6 +58,6 @@ struct FavoritesScreen: View {
 
 #Preview {
     FavoritesScreen()
-        .environment(AsteroidStore())
+        .environmentObject(ViewModel(service: APIService()))
         .environment(Favorites())
 }
