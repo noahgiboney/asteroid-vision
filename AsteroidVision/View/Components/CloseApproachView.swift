@@ -17,10 +17,11 @@ struct CloseApproachView: View {
                 .fontWeight(.semibold)
             
             VStack(alignment: .leading) {
+                Text("Orbiting \(entry.orbitingBody)")
                 Text("Miss Distance: \(entry.missDistance(for: units.distance))")
                 Text("Traveling: \(entry.velocity(for: units.velocity))")
             }
-            .font(.footnote)
+            .font(.callout)
         }
         .padding(.horizontal)
     }
