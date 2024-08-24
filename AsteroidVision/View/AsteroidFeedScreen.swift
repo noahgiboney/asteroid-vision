@@ -19,7 +19,7 @@ struct AsteroidFeedScreen: View {
         NavigationStack {
             List {
                 Section {
-                    DatePicker("Asteroids for", selection: $viewModel.date, displayedComponents: .date)
+                    DatePicker("Close Asteroids On:", selection: $viewModel.date, displayedComponents: .date)
                 }
                 
                 SceneView(model: .earth, rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
