@@ -13,17 +13,21 @@ class ViewModel: ObservableObject {
     
     init(service: APIService) {
         self.service = service
+        Task { await populateFeed() }
     }
     
     @Published var favorites: [NearEarthObject] = []
     @Published var feed: [NearEarthObject] = []
     @Published var showingError = false
+    @Published var isLoading = true
+    
     @Published var date: Date = .now {
         didSet {
             feed.removeAll()
             Task { await populateFeed() }
         }
     }
+    
     @Published var error: APIError? {
         didSet {
             showingError = true
@@ -32,8 +36,10 @@ class ViewModel: ObservableObject {
     
     func populateFeed() async {
         do {
+            self.isLoading = true
             let asteroids = try await service.fetchFeed(for: date)
-            feed.append(contentsOf: asteroids)
+            self.feed.append(contentsOf: asteroids)
+            self.isLoading = false
         } catch let error as APIError {
             self.error = error
         } catch {

@@ -13,13 +13,34 @@ struct AsteroidFeedScreen: View {
     @State private var units = UnitSettings()
     @State private var favorites = Favorites()
     @State private var showingUnitSettings = false
-    @State private var isLoading = true
+    @State private var asteroidType: AsteroidType = .all
+    
+    var asteroids: [NearEarthObject] {
+        switch asteroidType {
+        case .hazard:
+            viewModel.feed.filter { $0.isPotentiallyHazardousAsteroid }
+        case .nonHazard:
+            viewModel.feed.filter { !$0.isPotentiallyHazardousAsteroid }
+        case .all:
+            viewModel.feed
+        }
+    }
     
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     DatePicker("Close Asteroids On:", selection: $viewModel.date, displayedComponents: .date)
+                    
+                    Picker("Asteroid Type", selection: $asteroidType) {
+                        Text("All")
+                            .tag(AsteroidType.all)
+                        Text("Hazards")
+                            .tag(AsteroidType.hazard)
+                        Text("Non Hazards")
+                            .tag(AsteroidType.nonHazard)
+                    }
+                    .pickerStyle(.segmented)
                 }
                 
                 SceneView(model: .earth, rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
@@ -30,20 +51,27 @@ struct AsteroidFeedScreen: View {
                     .listRowSeparator(.hidden)
                     .padding()
                 
-                if isLoading {
+                if viewModel.isLoading {
                     ProgressView()
                         .frame(maxWidth: .infinity, alignment: .center)
                         .listRowBackground(Color.clear)
                 } else {
-                    ForEach(viewModel.feed) { asteroid in
-                        AsteroidPreviewView(asteroid: asteroid)
-                            .background {
-                                NavigationLink("", destination: AsteroidDetailScreen(asteroidId: asteroid.id, asteroid: asteroid))
-                                .opacity(0.0)
-                            }
-                            .listRowSeparator(.hidden)
+                    if asteroids.isEmpty {
+                        Text("No Results")
+                            .font(.headline)
+                            .frame(maxWidth: .infinity, alignment: .center)
+                            .listRowBackground(Color.clear)
+                    } else {
+                        ForEach(asteroids) { asteroid in
+                            AsteroidPreviewView(asteroid: asteroid)
+                                .background {
+                                    NavigationLink("", destination: AsteroidDetailScreen(asteroidId: asteroid.id, asteroid: asteroid))
+                                        .opacity(0.0)
+                                }
+                                .listRowSeparator(.hidden)
+                        }
+                        .listRowBackground(Color.clear)
                     }
-                    .listRowBackground(Color.clear)
                 }
             }
             .navigationTitle("Asteroid Vision")
@@ -65,7 +93,7 @@ struct AsteroidFeedScreen: View {
                     NavigationLink {
                         FavoritesScreen()
                     } label: {
-                        Image(systemName: "star")
+                        Image(systemName: "star.circle")
                     }
                 }
             }
@@ -76,10 +104,6 @@ struct AsteroidFeedScreen: View {
                 }
             } message: { error in
                 Text(error.failureReason)
-            }
-            .task { 
-                await viewModel.populateFeed()
-                isLoading = false
             }
         }
         .environmentObject(viewModel)

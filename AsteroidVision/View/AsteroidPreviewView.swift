@@ -8,9 +8,9 @@
 import SwiftUI
 
 struct AsteroidPreviewView: View {
+    var asteroid: NearEarthObject
     @Environment(\.colorScheme) var scheme
     @Environment(UnitSettings.self) var units
-    var asteroid: NearEarthObject
     
     var body: some View {
         VStack {
@@ -25,6 +25,7 @@ struct AsteroidPreviewView: View {
             VStack(alignment: .leading, spacing: 5) {
                 Text(asteroid.name)
                     .font(.headline)
+                    .foregroundStyle(asteroid.isPotentiallyHazardousAsteroid ? .red : .primary)
                 
                 Text("Traveling \(asteroid.velocity(unit: units.velocity))")
                     .font(.footnote)

@@ -45,6 +45,11 @@ struct AsteroidDetailScreen: View {
                         Text("Absolute Magnitude: ")
                             .fontWeight(.semibold) +
                         Text("\(asteroid.absoluteMagnitudeH.removeZerosFromEnd())")
+                        
+                        Text("Potentially Hazardous: ")
+                            .fontWeight(.semibold) +
+                        Text("\(asteroid.isPotentiallyHazardousAsteroid ? "True" : "False")")
+                            .foregroundStyle(asteroid.isPotentiallyHazardousAsteroid ? .red : .primary)
                     }
                     
                     Section("History of Approaches") {

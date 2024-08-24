@@ -14,6 +14,7 @@
 		E22700482BAFE45F00844860 /* OrbitalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22700472BAFE45F00844860 /* OrbitalData.swift */; };
 		E227004A2BAFE5FF00844860 /* FeedResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22700492BAFE5FF00844860 /* FeedResponse.swift */; };
 		E227004C2BAFE66A00844860 /* NearEarthObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = E227004B2BAFE66A00844860 /* NearEarthObject.swift */; };
+		E22FDFDE2C7A9A9B00DC70C0 /* AsteroidType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E22FDFDD2C7A9A9B00DC70C0 /* AsteroidType.swift */; };
 		E232048E2BAE7583003D9322 /* AsteroidFeedScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E232048D2BAE7583003D9322 /* AsteroidFeedScreen.swift */; };
 		E232049A2BAE905C003D9322 /* earth.usdz in Resources */ = {isa = PBXBuildFile; fileRef = E23204992BAE905C003D9322 /* earth.usdz */; };
 		E23661FC2BAF66FB00AADA8F /* Units.swift in Sources */ = {isa = PBXBuildFile; fileRef = E23661FB2BAF66FB00AADA8F /* Units.swift */; };
@@ -44,6 +45,7 @@
 		E22700472BAFE45F00844860 /* OrbitalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrbitalData.swift; sourceTree = "<group>"; };
 		E22700492BAFE5FF00844860 /* FeedResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedResponse.swift; sourceTree = "<group>"; };
 		E227004B2BAFE66A00844860 /* NearEarthObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearEarthObject.swift; sourceTree = "<group>"; };
+		E22FDFDD2C7A9A9B00DC70C0 /* AsteroidType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidType.swift; sourceTree = "<group>"; };
 		E232048D2BAE7583003D9322 /* AsteroidFeedScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsteroidFeedScreen.swift; sourceTree = "<group>"; };
 		E23204992BAE905C003D9322 /* earth.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = earth.usdz; sourceTree = "<group>"; };
 		E23661FB2BAF66FB00AADA8F /* Units.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Units.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 		E24781702C64716F00D9510D /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				E22FDFDD2C7A9A9B00DC70C0 /* AsteroidType.swift */,
 				E22700432BAFE17200844860 /* CloseApproachData.swift */,
 				E22700452BAFE1CC00844860 /* EstimatedDiameter.swift */,
 				E22700492BAFE5FF00844860 /* FeedResponse.swift */,
@@ -301,6 +304,7 @@
 				E2E78D462BAE051500158AB0 /* SceneView.swift in Sources */,
 				E243AA382BABFAD100B87D13 /* Util.swift in Sources */,
 				E22700462BAFE1CC00844860 /* EstimatedDiameter.swift in Sources */,
+				E22FDFDE2C7A9A9B00DC70C0 /* AsteroidType.swift in Sources */,
 				E25408AB2C76DF8B00E0B250 /* APIError.swift in Sources */,
 				E2DE1D242BA68250009E5B85 /* AsteroidVision.swift in Sources */,
 			);
