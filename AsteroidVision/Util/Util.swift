@@ -8,6 +8,22 @@
 import Foundation
 import SwiftUI
 
+let key = "dHOF8WnJtWYZrknUvPJZRddyB7J7q537zUXdwodN"
+
+let apiKeyString = "api_key=\(key)"
+
+let urlString = "https://api.nasa.gov/neo/rest/v1"
+
+typealias DataModel = Codable & Hashable
+
+extension Date {
+    var formatted: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter.string(from: self)
+    }
+}
+
 extension String {
     var formattedDate: String {
         let inputFormatter = DateFormatter()

@@ -1,5 +1,5 @@
 //
-//  ControlCenterScreen.swift
+//  UnitSettingsScreen.swift
 //  AsteroidVision
 //
 //  Created by Noah Giboney on 3/27/24.
@@ -43,7 +43,7 @@ struct UnitSettingsScreen: View {
                     }
                 }
             }
-            .navigationTitle("Control Center")
+            .navigationTitle("Unit Settings")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {

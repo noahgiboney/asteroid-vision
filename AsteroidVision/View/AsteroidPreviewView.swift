@@ -26,9 +26,6 @@ struct AsteroidPreviewView: View {
                 Text(asteroid.name)
                     .font(.headline)
                 
-                Text("Next Approach on \(asteroid.nextCloseApproach)")
-                    .font(.footnote)
-                
                 Text("Traveling \(asteroid.velocity(unit: units.velocity))")
                     .font(.footnote)
             }

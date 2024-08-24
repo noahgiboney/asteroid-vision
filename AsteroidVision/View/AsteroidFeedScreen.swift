@@ -1,5 +1,5 @@
 //
-//  Home.swift
+//  AsteroidFeedScreen.swift
 //  AsteroidVision
 //
 //  Created by Noah Giboney on 3/22/24.
@@ -12,7 +12,8 @@ struct AsteroidFeedScreen: View {
     @StateObject private var viewModel = ViewModel(service: APIService())
     @State private var units = UnitSettings()
     @State private var favorites = Favorites()
-    @State private var showingControlCenter = false
+    @State private var showingUnitSettings = false
+    @State private var isLoading = true
     @State private var dub = 0.0
     
     var body: some View {
@@ -37,26 +38,32 @@ struct AsteroidFeedScreen: View {
                     .listRowSeparator(.hidden)
                     .padding()
                 
-                ForEach(viewModel.feed) { asteroid in
-                    AsteroidPreviewView(asteroid: asteroid)
-                        .background {
-                            NavigationLink("", destination: AsteroidDetailScreen(asteroidId: asteroid.id, asteroid: asteroid))
-                            .opacity(0.0)
-                        }
-                        .listRowSeparator(.hidden)
+                if isLoading {
+                    ProgressView()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .listRowBackground(Color.clear)
+                } else {
+                    ForEach(viewModel.feed) { asteroid in
+                        AsteroidPreviewView(asteroid: asteroid)
+                            .background {
+                                NavigationLink("", destination: AsteroidDetailScreen(asteroidId: asteroid.id, asteroid: asteroid))
+                                .opacity(0.0)
+                            }
+                            .listRowSeparator(.hidden)
+                    }
+                    .listRowBackground(Color.clear)
                 }
-                .listRowBackground(Color.clear)
             }
             .navigationTitle("Asteroid Vision")
             .navigationBarTitleDisplayMode(.inline)
-            .sheet(isPresented: $showingControlCenter) {
-                ControlCenterScreen(units: units)
+            .sheet(isPresented: $showingUnitSettings) {
+                UnitSettingsScreen(units: units)
                     .presentationDetents([.fraction(0.40)])
             }
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing){
                     Button {
-                        showingControlCenter.toggle()
+                        showingUnitSettings.toggle()
                     } label: {
                         Image(systemName: "ruler")
                     }
@@ -77,6 +84,10 @@ struct AsteroidFeedScreen: View {
                 }
             } message: { error in
                 Text(error.failureReason)
+            }
+            .task { 
+                await viewModel.populateFeed()
+                isLoading = false
             }
         }
         .environmentObject(viewModel)

@@ -8,67 +8,103 @@
 import SwiftUI
 
 struct AsteroidDetailScreen: View {
-    var asteroid: NearEarthObject
-    @Environment(AsteroidStore.self) var store
+    var asteroidId: String
+    @EnvironmentObject var viewModel: ViewModel
     @Environment(Favorites.self) var favorites
     @Environment(UnitSettings.self) var units
-    @State private var showingControlCenter = false
+    @Environment(\.dismiss) var dismiss
+    @State private var showingUnitSettings = false
+    @State private var asteroid: NearEarthObject?
+    @State private var closeApproaches: [CloseApproachData] = []
+    
+    init(asteroidId: String, asteroid: NearEarthObject? = nil) {
+        self.asteroidId = asteroidId
+        
+        if let asteroid = asteroid {
+            self._asteroid = State(initialValue: asteroid)
+        }
+    }
     
     var body: some View {
-        List {
-            SceneView(model: .asteroid, rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
-                .frame(height: 100)
-                .listRowBackground(Color.clear)
-            
-            Section("Details"){
-                Text("Relative Velocity: \(asteroid.velocity(unit: units.velocity))")
-                Text("Estimated Diameter: \(asteroid.diameter(unit: units.diameter))")
-                Text("Absolute Magnitude: \(asteroid.absoluteMagnitudeH.removeZerosFromEnd())")
-            }
-            
-            Section("Orbital Data") {
-                Text("First Observation: \(asteroid.orbitalData.firstObservationDate.formattedDate)")
-                
-                Text("Last Observation: \(asteroid.orbitalData.lastObservationDate.formattedDate)")
-            }
-            
-            Section("Future Approaches To Earth") {
-                ForEach(asteroid.earthApproaches, id: \.epochDateCloseApproach) { entry in
-                    CloseApproachView(entry: entry)
+        Group {
+            if let asteroid = asteroid {
+                List {
+                    SceneView(model: .asteroid, rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)
+                        .frame(height: 100)
+                        .listRowBackground(Color.clear)
+                    
+                    Section("Details"){
+                        Text("Relative Velocity: \(asteroid.velocity(unit: units.velocity))")
+                        Text("Estimated Diameter: \(asteroid.diameter(unit: units.diameter))")
+                        Text("Absolute Magnitude: \(asteroid.absoluteMagnitudeH.removeZerosFromEnd())")
+                    }
+                    
+                    Section("History of Approaches") {
+                        ForEach(closeApproaches, id: \.epochDateCloseApproach) { entry in
+                            CloseApproachView(entry: entry)
+                        }
+                    }
                 }
+            } else {
+                ProgressView()
             }
         }
-        .navigationTitle(asteroid.name)
+        .navigationTitle(asteroid?.name ?? "")
         .navigationBarTitleDisplayMode(.inline)
-        .sheet(isPresented: $showingControlCenter) {
-            ControlCenterScreen(units: units)
+        .sheet(isPresented: $showingUnitSettings) {
+            UnitSettingsScreen(units: units)
                 .presentationDetents([.fraction(0.40)])
         }
         .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    showingControlCenter.toggle()
-                } label: {
-                    Image(systemName: "line.3.horizontal.decrease.circle")
+            ToolbarItem(placement: .topBarTrailing){
+                Button("Favorite", systemImage: favorites.contains(asteroidId) ? "star.fill" : "star") {
+                    onSave(asteroidId)
                 }
             }
             
-            ToolbarItem(placement: .topBarTrailing){
-                Button("Favorite", systemImage: favorites.contains(asteroid.id) ? "star.fill" : "star") {
-                    if favorites.contains(asteroid.id) {
-                        favorites.delete(asteroid.id)
-                    } else {
-                        favorites.add(asteroid.id)
-                    }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingUnitSettings.toggle()
+                } label: {
+                    Image(systemName: "ruler")
                 }
             }
+        }
+        .alert(isPresented: $viewModel.showingError, error: viewModel.error) { error in
+            Button("OK") {
+                viewModel.error = nil
+                dismiss()
+            }
+        } message: { error in
+            Text(error.failureReason)
+        }
+        .task {
+            await fetchCloseApproaches()
+            if asteroid == nil {
+                asteroid = await viewModel.fetchAsteroid(id: asteroidId)
+            }
+        }
+    }
+    
+    func onSave(_ asteroidId: String) {
+        if favorites.contains(asteroidId) {
+            favorites.delete(asteroidId)
+        } else {
+            favorites.add(asteroidId)
+        }
+    }
+    
+    func fetchCloseApproaches() async {
+        let asteroid = await viewModel.fetchAsteroid(id: asteroidId)
+        if let asteroid = asteroid {
+            closeApproaches = asteroid.closeApproachData
         }
     }
 }
 
 #Preview {
-    AsteroidDetailScreen(asteroid: .example)
-        .environment(AsteroidStore())
+    AsteroidDetailScreen(asteroidId: NearEarthObject.example.id)
+        .environmentObject(ViewModel(service: APIService()))
         .environment(Favorites())
         .environment(UnitSettings())
 }
