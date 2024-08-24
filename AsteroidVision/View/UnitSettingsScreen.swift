@@ -7,10 +7,9 @@
 
 import SwiftUI
 
-struct ControlCenterScreen: View {
+struct UnitSettingsScreen: View {
     @Bindable var units: UnitSettings
     @Environment(\.dismiss) var dismiss
-    @Environment(AsteroidStore.self) var store
     
     var body: some View {
         NavigationStack {
@@ -59,6 +58,6 @@ struct ControlCenterScreen: View {
 
 #Preview {
     NavigationStack {
-        ControlCenterScreen(units: UnitSettings())
+        UnitSettingsScreen(units: UnitSettings())
     }
 }

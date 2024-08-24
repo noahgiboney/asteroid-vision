@@ -14,8 +14,8 @@ class APIService {
         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
-    func fetchFeed(for date: Date, page: Int) async throws -> [NearEarthObject] {
-        guard let url = URL(string: feedUrl(date: date, page: page)) else { throw APIError.url }
+    func fetchFeed(for date: Date) async throws -> [NearEarthObject] {
+        guard let url = URL(string: feedUrl(date: date)) else { throw APIError.url }
         
         let data = try await fetchData(for: url)
         
@@ -45,15 +45,14 @@ class APIService {
     }
     
     private func fetchData(for url: URL) async throws -> Data {
-        print(url)
         let (data, response) = try await URLSession.shared.data(from: url)
         guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else { throw APIError.server}
         return data
     }
     
-    private func feedUrl(date: Date, page: Int) -> String {
+    private func feedUrl(date: Date) -> String {
         let dateString = date.formatted
         
-        return "\(urlString)/feed?start_date=\(dateString)?page=\(page)&size=5&\(apiKeyString)"
+        return "\(urlString)/feed?start_date=\(dateString)&\(apiKeyString)"
     }
 }
