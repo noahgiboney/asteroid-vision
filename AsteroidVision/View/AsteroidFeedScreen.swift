@@ -35,9 +35,9 @@ struct AsteroidFeedScreen: View {
                     Picker("Asteroid Type", selection: $asteroidType) {
                         Text("All")
                             .tag(AsteroidType.all)
-                        Text("Hazards")
+                        Text("Hazard")
                             .tag(AsteroidType.hazard)
-                        Text("Non Hazards")
+                        Text("Non Hazard")
                             .tag(AsteroidType.nonHazard)
                     }
                     .pickerStyle(.segmented)
