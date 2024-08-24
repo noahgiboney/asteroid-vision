@@ -28,6 +28,7 @@ struct AsteroidPreviewView: View {
                 
                 Text("Traveling \(asteroid.velocity(unit: units.velocity))")
                     .font(.footnote)
+                    .italic()
             }
         }
         .foregroundStyle(scheme == .dark ? .white : .black)

@@ -121,13 +121,6 @@
 			path = Service;
 			sourceTree = "<group>";
 		};
-		E25408A42C76CE8400E0B250 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
-			sourceTree = "<group>";
-		};
 		E25408A52C76D3C100E0B250 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,7 +178,6 @@
 		E2DE1D222BA68250009E5B85 /* AsteroidVision */ = {
 			isa = PBXGroup;
 			children = (
-				E25408A42C76CE8400E0B250 /* New Group */,
 				E224DF262C6BC8FF006FF5BA /* App */,
 				E25408A52C76D3C100E0B250 /* ViewModel */,
 				E25408A02C76BFDF00E0B250 /* Service */,

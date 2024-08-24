@@ -14,20 +14,12 @@ struct AsteroidFeedScreen: View {
     @State private var favorites = Favorites()
     @State private var showingUnitSettings = false
     @State private var isLoading = true
-    @State private var dub = 0.0
     
     var body: some View {
         NavigationStack {
             List {
                 Section {
                     DatePicker("Asteroids for", selection: $viewModel.date, displayedComponents: .date)
-                    
-                    DisclosureGroup("Filter") {
-                        VStack {
-                            Text("Minimum Velocity")
-                            Slider(value: $dub)
-                        }
-                    }
                 }
                 
                 SceneView(model: .earth, rotationX: 1, rotationY: 1, rotationZ: 1, allowsCameraControl: true)

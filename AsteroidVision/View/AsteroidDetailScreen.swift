@@ -34,14 +34,28 @@ struct AsteroidDetailScreen: View {
                         .listRowBackground(Color.clear)
                     
                     Section("Details"){
-                        Text("Relative Velocity: \(asteroid.velocity(unit: units.velocity))")
-                        Text("Estimated Diameter: \(asteroid.diameter(unit: units.diameter))")
-                        Text("Absolute Magnitude: \(asteroid.absoluteMagnitudeH.removeZerosFromEnd())")
+                        Text("Relative Velocity: ")
+                            .fontWeight(.semibold) +
+                        Text("\(asteroid.velocity(unit: units.velocity))")
+                             
+                        Text("Estimated Diameter: ")
+                            .fontWeight(.semibold) +
+                        Text("\(asteroid.diameter(unit: units.diameter))")
+                    
+                        Text("Absolute Magnitude: ")
+                            .fontWeight(.semibold) +
+                        Text("\(asteroid.absoluteMagnitudeH.removeZerosFromEnd())")
                     }
                     
                     Section("History of Approaches") {
-                        ForEach(closeApproaches, id: \.epochDateCloseApproach) { entry in
-                            CloseApproachView(entry: entry)
+                        if closeApproaches.isEmpty {
+                            ProgressView()
+                                .frame(maxWidth: .infinity, alignment: .center)
+                                .listRowBackground(Color.clear)
+                        } else {
+                            ForEach(closeApproaches, id: \.epochDateCloseApproach) { entry in
+                                CloseApproachView(entry: entry)
+                            }
                         }
                     }
                 }
