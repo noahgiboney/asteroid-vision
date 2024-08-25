@@ -4,7 +4,8 @@
 
 Available on the [App Store](https://apps.apple.com/us/app/asteroid-vision/id6480248381).
 
-iOS app i built with SwiftUI, SceneKit, NASA REST API. Browse hazardous asteroids approaching earth.
+iOS app i built with SwiftUI, SceneKit, NASA REST API, and MVVM architecture.
+Browse hazardous asteroids approaching earth.
 
 ## Features
 
