@@ -12,5 +12,5 @@ iOS app i built with SwiftUI, SceneKit, NASA REST API. Browse hazardous asteroid
 
 - Access detailed information on each asteroid, including its velocity, how far it is from Earth, and its size, offering a comprehensive look at these celestial bodies.
 
-- keep track of the asteroids that intrigue you the most by adding them to your own curated list of favorite asteroids, making it easy to return to them at any time.
+- Keep track of the asteroids that intrigue you the most by adding them to your own curated list of favorite asteroids, making it easy to return to them at any time.
 
